@@ -1,0 +1,15 @@
+<mat-card class="skills-card">
+    <mat-card-header>
+        <mat-card-title>Technical Expertise</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngFor="let group of skillGroups" class="skill-group">
+            <h3>{{ group.name }}</h3>
+            <mat-chip-set>
+                <mat-chip *ngFor="let skill of group.skills" class="skill-chip">
+                    {{ skill }}
+                </mat-chip>
+            </mat-chip-set>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,20 @@
+.skills-card {
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.skill-group {
+    margin-bottom: 1.5rem;
+
+    h3 {
+        color: #1976d2;
+        /* Professional Azure/Blue theme [cite: 399] */
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+}
+
+.skill-chip {
+    background-color: #e3f2fd !important;
+    /* Subtle blue background */
+}

@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="navbar">
+    <span class="brand-logo">Mallikarjuna</span>
+    <span class="spacer"></span>
+<button mat-icon-button (click)="toggleTheme()">
+    <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+</button>
+    <a mat-button href="#home">Home</a>
+    <a mat-button href="#skills">Skills</a>
+<a mat-button href="#projects">Projects</a>    <button mat-button>Contact</button>
+</mat-toolbar>

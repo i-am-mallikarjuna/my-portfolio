@@ -1,0 +1,34 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    span,
+    a,
+    button,
+    mat-icon {
+        color: var(--text-primary) !important;
+    }
+
+    /* NEW: Specific styling for your name */
+    .brand-logo {
+        font-size: 1.5rem;
+        /* Makes it slightly larger than the links */
+        font-weight: 800;
+        /* Extra bold for a strong presence */
+        letter-spacing: 1px;
+        /* Adds a modern, airy feel */
+        color: var(--brand-blue) !important;
+        /* Overrides the white/black text to use your theme's blue */
+        text-transform: capitalize;
+        /* Gives it a sleek, corporate logo vibe */
+        cursor: pointer;
+        /* Makes it feel interactive */
+        margin-right: 2rem;
+        /* Gives it some breathing room from the next elements */
+    }
+}

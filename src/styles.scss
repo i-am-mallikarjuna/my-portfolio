@@ -1,0 +1,97 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  scroll-behavior: smooth;
+  /* Makes the transition feel fluid and professional */
+}
+
+/* Offset for the sticky navbar so it doesn't cover your section titles */
+section {
+  scroll-margin-top: 80px;
+}
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+/* Default Light Mode Variables */
+:root {
+  --bg-color: #f8f9fa;
+  --text-primary: #000000;
+  --text-secondary: #555555;
+  --brand-blue: #1976d2;
+  /* Darker blue for light mode */
+}
+
+/* Dark Mode Overrides */
+.dark-theme {
+  --bg-color: #121212;
+  --text-primary: #ffffff;
+  /* White text for dark mode */
+  --text-secondary: #cccccc;
+  /* Light gray for subtitles */
+  --brand-blue: #90caf9;
+  /* Lighter, brighter blue for dark mode visibility */
+
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+
+  .mat-toolbar {
+    background-color: #1f1f1f !important;
+  }
+
+  .hero-card,
+  .skills-card, .project-card {
+    background-color: #1e1e1e !important;
+    color: var(--text-primary) !important;
+    /* Pro-Tip: Adding a subtle border makes cards look incredibly sharp in dark mode */
+      border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+    /* NEW: Force the Dialog pop-up to use the elevated dark gray background */
+    .mdc-dialog__surface {
+      background-color: #1e1e1e !important;
+      color: var(--text-primary) !important;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
