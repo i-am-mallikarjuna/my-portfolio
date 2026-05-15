@@ -55,6 +55,7 @@
                 "fonts": {
                   "inline": false
                 }
+              }
             },
             "development": {
               "optimization": false,
@@ -82,6 +83,9 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy"
         }
+      },
+      "deploy": {
+        "builder": "angular-cli-ghpages:deploy"
       }
     }
   }
