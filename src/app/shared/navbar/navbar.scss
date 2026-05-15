@@ -1,5 +1,33 @@
+/* 1. Make the entire navigation bar sticky at the top */
+:host {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: block;
+    width: 100%;
+}
+
 .spacer {
     flex: 1 1 auto;
+}
+
+/* 2. Hide the mobile hamburger menu by default (Desktop View) */
+.mobile-menu-btn {
+    display: none !important;
+}
+
+/* 3. Responsive Rules for Mobile View */
+@media (max-width: 768px) {
+
+    /* Hide the standard row of links */
+    .desktop-menu {
+        display: none;
+    }
+
+    /* Show the hamburger menu icon */
+    .mobile-menu-btn {
+        display: block !important;
+    }
 }
 
 .navbar {

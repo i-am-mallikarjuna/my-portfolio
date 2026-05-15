@@ -32,7 +32,7 @@ export class Projects {
       role: '.NET Full Stack Developer',
       company: 'Rudrani Technologies',
       description: 'Engineered a comprehensive booking platform for flights, buses, and hotels. Designed the core API architecture in .NET Core, implemented JWT authentication for secure access, and seamlessly integrated 3rd-party real-time availability APIs.',
-      techStack: ['.NET Core', 'MSSQL', 'JWT Auth', 'REST APIs'],
+      techStack: ['.NET Core', 'MSSQL',  '3rd party API Integration'],
       caseStudy: {
         challenge: 'The client needed a unified platform that could query multiple third-party travel APIs in real-time without causing significant latency for the end user.',
         solution: 'Built robust asynchronous .NET Core API calls and implemented JWT authentication for secure access. Coordinated sprint planning to ensure the UI successfully consumed the complex data structures.',
@@ -44,7 +44,7 @@ export class Projects {
       role: '.NET Developer',
       company: 'FS Technosol LLP',
       description: 'Developed and supported a suite of 5 interconnected enterprise websites. Managed complex data integration, API handling, and optimized MSSQL stored procedures for efficient CRUD operations and high scalability.',
-      techStack: ['C#', '.NET', 'MSSQL', 'Architecture'],
+      techStack: ['C#', '.NET', 'MSSQL', 'MVC'],
       caseStudy: {
         challenge: 'The client needed a unified platform that could query multiple third-party travel APIs in real-time without causing significant latency for the end user.',
         solution: 'Built robust asynchronous .NET Core API calls and implemented JWT authentication for secure access. Coordinated sprint planning to ensure the UI successfully consumed the complex data structures.',

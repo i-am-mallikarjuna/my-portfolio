@@ -4,7 +4,20 @@
 <button mat-icon-button (click)="toggleTheme()">
     <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
 </button>
+<div class="desktop-menu">
     <a mat-button href="#home">Home</a>
     <a mat-button href="#skills">Skills</a>
-<a mat-button href="#projects">Projects</a>    <button mat-button>Contact</button>
+    <a mat-button href="#projects">Projects</a>
+    <button mat-button>Contact</button>
+</div>
+<button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu">
+    <mat-icon>menu</mat-icon>
+</button>
+<mat-menu #mobileMenu="matMenu">
+    <a mat-menu-item href="#home">Home</a>
+    <a mat-menu-item href="#skills">Skills</a>
+    <a mat-menu-item href="#projects">Projects</a>
+    <button mat-menu-item>Contact</button>
+</mat-menu>
+
 </mat-toolbar>
