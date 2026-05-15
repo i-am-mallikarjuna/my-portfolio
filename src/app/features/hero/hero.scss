@@ -6,6 +6,7 @@
     // max-width: 950px;
     /* This stops the card from stretching too wide on large monitors */
     margin: 0 auto;
+    margin-top: 4%;
     /* Centers the perfectly-sized card in your main container */
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     /* Slightly deeper shadow for a premium feel */
@@ -16,6 +17,7 @@
     @media (max-width: 768px) {
         padding: 1.5rem;
         border-radius: 12px;
+        margin-top: 17%;
     }
 
     h1 {
