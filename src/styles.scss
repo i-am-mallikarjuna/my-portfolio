@@ -52,6 +52,8 @@ body {
   --text-primary: #000000;
   --text-secondary: #555555;
   --brand-blue: #1976d2;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
   /* Darker blue for light mode */
 }
 
@@ -63,6 +65,8 @@ body {
   --text-secondary: #cccccc;
   /* Light gray for subtitles */
   --brand-blue: #90caf9;
+  --card-bg: #1e1e1e;
+  --card-border: rgba(255, 255, 255, 0.05);
   /* Lighter, brighter blue for dark mode visibility */
 
   background-color: var(--bg-color);

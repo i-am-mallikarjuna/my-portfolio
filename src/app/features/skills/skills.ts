@@ -13,8 +13,10 @@ import { CommonModule } from '@angular/common'; // Required for looping through 
 export class Skills {
   // Grouping skills makes them easy for recruiters to scan [cite: 499]
   skillGroups = [
-    { name: 'Languages', skills: ['C#', 'TypeScript', 'SQL'] },
-    { name: 'Frameworks', skills: ['ASP.NET Core', 'Angular', 'Entity Framework'] },
-    { name: 'Tools & DevOps', skills: ['Docker', 'Azure', 'Git', 'xUnit'] }
+    { name: 'Languages', skills: ['C#', 'TypeScript', 'SQL', 'HTML', 'CSS','JavaScript','Xaml'] },
+    { name: 'Frameworks', skills: ['ASP.NET', 'ADO .NET','Angular', 'Entity Framework'] },
+    {
+      name: 'Tools', skills: ['Visual Studio', 'SSMS', 'VS code', 'TFS', 'Git',  'Postman', 'Jira'
+    ] }
   ];
 }

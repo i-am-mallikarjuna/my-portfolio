@@ -19,11 +19,16 @@
 .project-card {
     display: flex;
     flex-direction: column;
-    background-color: var(--bg-color) !important;
     color: var(--text-primary) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: none !important;
     border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+/* 1. SWAPPED TO DYNAMIC VARIABLES HERE */
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--card-border) !important;
+
+    transition: transform 0.3s ease, box-shadow 0.3s 
+    ease;
 
     &:hover {
         transform: translateY(-5px);
@@ -45,8 +50,6 @@
 .project-content {
     flex-grow: 1;
     /* Pushes the actions button to the bottom */
-    margin-top: 1rem;
-
     p {
         line-height: 1.6;
         color: var(--text-secondary);
@@ -55,32 +58,13 @@
 }
 
 .tech-chip {
-    background-color: rgba(25, 118, 210, 0.1) !important;
+    background-color: #e3f2fd !important;
     color: var(--brand-blue) !important;
     font-weight: 500;
 }
 
 .project-actions {
-    padding: 1rem;
+    padding: 0.5rem;
+    margin: 1%;
     border-top: 1px solid rgba(128, 128, 128, 0.2);
-}
-
-.project-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    /* Ensures all cards in a row are the exact same height */
-
-    /* DELETE the background-color: var(--bg-color) !important; line */
-
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-    /* Stronger shadow for depth */
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        /* Shadow expands on hover */
-    }
 }
