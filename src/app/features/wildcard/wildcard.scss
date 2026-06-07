@@ -1,0 +1,73 @@
+.wildcard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    text-align: center;
+    padding: 1rem; // Ensures content doesn't touch edges on mobile
+
+    .gear-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    .gear-large {
+        font-size: 80px;
+        height: 80px;
+        width: 80px;
+        color: var(--brand-blue);
+        animation: spin-cw 4s linear infinite; // Clockwise
+    }
+
+    .gear-small {
+        font-size: 40px;
+        height: 40px;
+        width: 40px;
+        color: var(--text-secondary);
+        margin-left: -10px; // Overlaps them slightly for a gear-mesh look
+        animation: spin-ccw 4s linear infinite; // Counter-Clockwise
+    }
+}
+
+@keyframes spin-cw {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin-ccw {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* Mobile Responsiveness for small screens */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .gear-large {
+        font-size: 60px;
+        width: 60px;
+        height: 60px;
+    }
+
+    .gear-small {
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+    }
+}

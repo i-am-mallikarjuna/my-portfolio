@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { Hero } from './features/hero/hero';
-import { Skills } from './features/skills/skills';
-import { Projects } from './features/projects/projects';
+import { Wildcard } from './features/wildcard/wildcard';
+import { Home } from './features/home/home';
 
 export const routes: Routes = [
-    { path: '', component: Hero },       // Default "Home" view
-    { path: 'skills', component: Skills },
-    {path : 'projects', component: Projects }
+    { path: '', component: Home },       
+    { path: 'contact', component: Wildcard },
+    { path: 'resume', component: Wildcard },
+    { path: '**', redirectTo: '' }
 ];
