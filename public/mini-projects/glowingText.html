@@ -1,0 +1,192 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+    <title>GlowTxt</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+</head>
+
+<body oncopy="return false" oncut="return false" onpaste="return false">
+
+    <h1>
+
+        <span>Goo</span>
+
+        <span>L</span>
+
+        <span>0</span>
+
+        <span>W</span>
+
+        <span>I</span>
+
+        <span>N</span>
+
+        <span>G</span>
+    </h1>
+
+</body>
+
+<style>
+    body {
+
+        margin: 0px;
+
+        display: flex;
+
+        padding: 0px;
+        justify-content: center;
+        min-height: 100vh;
+
+        align-items: center;
+
+        background-color: #0e0e0e;
+    }
+
+    h1 {
+
+        color: #111;
+
+        font-size: 7em;
+
+        font-family: helvetica;
+
+    }
+
+
+
+    h1 span {
+
+        display: table-cell;
+
+        margin: 0px;
+
+        padding: 0px;
+        animation: textanimate 3.3s linear infinite;
+
+    }
+
+    @keyframes textanimate {
+
+        0%,
+        100% {
+
+            color: #fff;
+
+            filter: blur(2px);
+
+            text-shadow:
+
+                0 0 10px #f4bf04, 0 0 20px #f4bf04,
+
+                0 0 40px #f4bf04,
+
+                080px #f4bf04,
+
+                0 @ 120px #f4bf04,
+
+                0 0 200px #f4bf04,
+
+                0 e 300px #f4bf04,
+
+                0 0 400px #f4bf04;
+
+        }
+
+        5%,
+        95% {
+
+            color: #111;
+
+            filter: blur(0px);
+
+            text-shadow: none;
+
+        }
+
+    }
+
+    @-webkit-keyframes textanimate {
+
+        0%,
+        100% {
+
+            color: #fff;
+
+            filter: blur(2px);
+
+            text-shadow:
+
+                0 0 10px #f4bf04, 0 0 20px #f4bf04,
+
+                0 0 40px #f4bf04,
+
+                080px #f4bf04,
+
+                0 @ 120px #f4bf04,
+
+                0 0 200px #f4bf04,
+
+                0 e 300px #f4bf04,
+
+                0 0 400px #f4bf04;
+
+        }
+
+        5%,
+        95% {
+
+            color: #111;
+
+            filter: blur(0px);
+
+            text-shadow: none;
+
+        }
+
+    }
+</style>
+
+<script>
+    $(document).keypress(
+        function (event) {
+            if (event.which == '13') {
+                event.preventDefault();
+            }
+        });
+
+    $(document).keypress(
+        function (event) {
+            console.log(event.keyCode);
+            if (event.which == '13') {
+                event.preventDefault();
+                console.log("Enter pressed");
+            }
+            if (event.which == '17') {
+                event.preventDefault();
+                console.log("ctrl pressed");
+            }
+            if (event.keyCode == 123) {
+                console.log("F12 pressed");
+                return false;
+            }
+            if (event.ctrlKey) {
+                event.preventDefault();
+                console.log("ctrl pressed");
+            }
+        });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.ctrlKey) {
+            event.preventDefault();
+        }
+    });
+</script>
+
+</html>

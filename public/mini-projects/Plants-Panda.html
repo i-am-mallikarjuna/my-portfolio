@@ -1,0 +1,399 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plants Panda</title>
+</head>
+
+<body>
+    <div class="background">
+        <!-- <div class="plant-1">
+            <div class="bowl">
+                <div class="cable">
+                    <div class="leaf leaf-1"></div>
+                    <div class="leaf leaf-2"></div>
+                    <div class="leaf leaf-3"></div>
+                    <div class="leaf leaf-4"></div>
+                </div>
+            </div>
+        </div>
+        <div class="plant-2">
+            <div class="bowl">
+                <div class="cable">
+                    <div class="leaf leaf-1"></div>
+                    <div class="leaf leaf-2"></div>
+                    <div class="leaf leaf-3"></div>
+                    <div class="leaf leaf-4"></div>
+                    <div class="leaf leaf-5"></div>
+                </div>
+            </div>
+        </div> -->
+        <div class="panda">
+            <div class="head">
+                <div class="face">
+                    <div class="eye eye-left"></div>
+                    <div class="eye eye-right"></div>
+                    <div class="nose"></div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="arm arm-left"></div>
+                <div class="arm arm-right"></div>
+                <div class="leg leg-left"></div>
+                <div class="leg leg-right"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    body {
+        background: rgb(20, 124, 114);
+        background: #7fff00;
+        animation: background-color 3s 2.5s infinite;
+    }
+
+    @keyframes background-color {
+
+        25%,
+        65% {
+            background: #333;
+
+        }
+
+        60%,
+        70% {
+            background: #13d65e;
+        }
+    }
+
+    /* .background { */
+    /* position: relative; */
+    /* width: 270px; */
+    /* height: 170px; */
+    /* } */
+
+    .plant-1 {
+        left: -95px;
+    }
+
+    .plant-2 {
+        left: -25px;
+    }
+
+    .bowl {
+        position: absolute;
+        top: 130px;
+        left: 210px;
+        width: 60px;
+        height: 30px;
+        border-radius: 100%;
+        background: #FEE225;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+
+    .cable {
+        position: absolute;
+        top: -110px;
+        left: 30px;
+        width: 3px;
+        height: 110px;
+        background: #74B530;
+    }
+
+    .leaf {
+        width: 30px;
+        height: 20px;
+        background: #115635;
+    }
+
+    .leaf-1 {
+        position: absolute;
+        border-bottom-right-radius: 30px;
+        border-top-left-radius: 30px;
+        left: 2px;
+        animation: fly 1.7s infinite;
+        transform-style: preserve-3d;
+        transform: rotateY(30deg);
+    }
+
+    .leaf-1:hover {
+        animation: fly .7s infinite;
+    }
+
+    .leaf-2 {
+        position: absolute;
+        top: 25px;
+        left: -28px;
+        border-bottom-left-radius: 30px;
+        border-top-right-radius: 30px;
+        animation: fly 1.7s infinite;
+        transform-style: preserve-3d;
+        transform: rotateY(30deg);
+    }
+
+    .leaf-3 {
+        position: absolute;
+        top: 50px;
+        left: 2px;
+        border-bottom-right-radius: 30px;
+        border-top-left-radius: 30px;
+        animation: fly 1.5s infinite;
+        transform-style: preserve-3d;
+        transform: rotateY(30deg);
+    }
+
+    .leaf-4 {
+        position: absolute;
+        top: 75px;
+        left: -28px;
+        border-bottom-left-radius: 30px;
+        border-top-right-radius: 30px;
+        animation: fly 1.8s infinite;
+        transform-style: preserve-3d;
+        transform: rotateY(30deg);
+    }
+
+    .leaf-4:hover {
+        transform: rotateY(40deg);
+    }
+
+    .leaf-5 {
+        position: absolute;
+        top: -20px;
+        left: -25px;
+        border-bottom-left-radius: 30px;
+        border-top-right-radius: 30px;
+        animation: fly 1.7s infinite;
+        transform-style: preserve-3d;
+        transform: rotateY(30deg);
+    }
+
+    .panda {
+        position: relative;
+        top: 50%;
+        left: 45%;
+        margin-top: 55%;
+        /* display: block; */
+
+
+    }
+
+    .head {
+        width: 60px;
+        height: 60px;
+        background: #fff;
+        border-radius: 100%;
+        animation: own 3s 2.5s infinite;
+
+    }
+
+    .head::after {
+        position: absolute;
+        top: -10px;
+        left: -5px;
+        width: 30px;
+        height: 30px;
+        background: #350460;
+        background: #000000;
+        border-radius: 100%;
+        content: "";
+        animation: ear 2.5s .5s infinite;
+    }
+
+    .head::before {
+        position: absolute;
+        top: -10px;
+        left: 35px;
+        width: 30px;
+        height: 30px;
+        background: #333;
+        background: #000000;
+        border-radius: 100%;
+        content: "";
+        animation: ear 2.5s .5s infinite;
+    }
+
+    .face {
+        width: 60px;
+        height: 60px;
+        background: #fff;
+        background: #431858;
+        border-radius: 100%;
+        z-index: 6;
+        animation: background-color 3s 2.5s infinite;
+    }
+
+    .eye {
+        width: 20px;
+        height: 27px;
+        background: #333;
+        background: #000000;
+        border-radius: 100%;
+    }
+
+    .eye::after {
+        position: absolute;
+        content: "";
+        top: 10px;
+        left: 7px;
+        width: 5px;
+        height: 5px;
+        background: #fff;
+        background: black;
+        border-radius: 100%;
+        animation: blink 2.3s .6s infinite;
+    }
+
+    .eye-left {
+        position: absolute;
+        top: 10px;
+        left: 7px;
+        transform: rotate(30deg);
+    }
+
+    .eye-right {
+        position: absolute;
+        top: 10px;
+        left: 33px;
+        transform: rotate(-30deg);
+    }
+
+    .nose {
+        top: 35px;
+        left: 22px;
+        width: 15px;
+        height: 10px;
+        background: #333;
+        border-radius: 100%;
+        animation: nose-move 3.5s .5s infinite;
+        transition: .5s;
+    }
+
+    .body {
+        top: -5px;
+        left: 0px;
+        width: 60px;
+        height: 75px;
+        background: #fff;
+        background: #431858;
+        border-radius: 100%;
+        animation: background-color 3s 2.5s infinite;
+    }
+
+    .arm {
+        width: 23px;
+        height: 55px;
+        background: #000000;
+        border-radius: 100%;
+    }
+
+    .arm-right {
+        position: absolute;
+        top: -5px;
+        left: 45px;
+        transform: rotate(-30deg);
+        animation: arm-right 4.5s 3s infinite;
+    }
+
+    .arm-left {
+        position: absolute;
+        top: -5px;
+        left: -10px;
+        transform: rotate(30deg);
+        animation: arm-left 4.5s 3s infinite;
+    }
+
+    .leg {
+        width: 25px;
+        height: 50px;
+        background: #000000;
+        border-radius: 100%;
+    }
+
+    .leg-left {
+        position: absolute;
+        top: 25px;
+        left: -3px;
+        transform: rotate(10deg);
+        animation: leg-left 4.5s 2s infinite;
+    }
+
+    .leg-right {
+        position: absolute;
+        top: 25px;
+        left: 35px;
+        transform: rotate(-10deg);
+        animation: leg-right 4.5s 2s infinite;
+    }
+
+    @keyframes fly {
+        50% {
+            transform: rotate(10deg)
+        }
+    }
+
+    @keyframes own {
+        50% {
+            transform: rotate(-10deg)
+        }
+    }
+
+    @keyframes ear {
+        50% {
+            transform: translateY(5px)
+        }
+    }
+
+    @keyframes leg-left {
+        50% {
+            transform: rotate(-10deg)
+        }
+    }
+
+    @keyframes leg-right {
+        50% {
+            transform: rotate(10deg)
+        }
+    }
+
+    @keyframes arm-left {
+        50% {
+            transform: rotate(40deg)
+        }
+    }
+
+    @keyframes arm-right {
+        50% {
+            transform: rotate(-40deg)
+        }
+    }
+
+    @keyframes blink {
+
+        25%,
+        65% {
+            background: #333;
+        }
+
+        60%,
+        70% {
+            background: #fff;
+        }
+    }
+
+
+    @keyframes nose-move {
+        80% {
+            transform: translateY(-2px)
+        }
+
+        85% {
+            transform: translateY(-1px)
+        }
+    }
+</style>
+
+</html>

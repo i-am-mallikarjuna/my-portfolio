@@ -1,0 +1,20 @@
+<section class="sandbox-section" id="sandbox">
+    <h2 class="section-title">Creative Experiments</h2>
+    <p class="section-subtitle">A collection of interactive UI/UX mini-projects</p>
+
+    <div class="sandbox-container">
+        <div class="menu-column">
+            @for (exp of experiments; track exp.name) {
+            <button class="menu-btn" [class.active]="activeProjectName === exp.name" (click)="selectExperiment(exp)">
+                {{ exp.name }}
+            </button>
+            }
+        </div>
+
+        <div class="display-column">
+            <div class="monitor-frame">
+                <iframe [src]="selectedUrl" title="Project Sandbox"></iframe>
+            </div>
+        </div>
+    </div>
+</section>

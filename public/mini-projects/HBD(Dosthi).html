@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dosthi</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Lato:300italic);
+
+        body {
+            margin: 0;
+            background: #020202;
+            cursor: crosshair;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        :root {
+            --D: 100px;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background: rgb(45, 16, 75);
+            background: -moz-radial-gradient(center, ellipse cover, rgba(45, 16, 75, 1) 0%, rgba(108, 82, 153, 1) 100%);
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(45, 16, 75, 1)), color-stop(100%, rgba(108, 82, 153, 1)));
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(45, 16, 75, 1) 0%, rgba(108, 82, 153, 1) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(45, 16, 75, 1) 0%, rgba(108, 82, 153, 1) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(45, 16, 75, 1) 0%, rgba(108, 82, 153, 1) 100%);
+            background: radial-gradient(ellipse at center, rgba(45, 16, 75, 1) 0%, rgba(108, 82, 153, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a27bcc', endColorstr='#6c5299', GradientType=1);
+        }
+
+        .cake {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            margin-left: calc(-1 * var(--D) / 2);
+            margin-top: calc(-1 * var(--D) / 2);
+            width: var(--D);
+            height: var(--D);
+        }
+
+        .cake:after {
+            background: rgba(235, 227, 225, 1);
+            border-radius: var(--D);
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: var(--D);
+            height: calc(var(--D) / 50);
+        }
+
+        .velas {
+            background: rgba(255, 255, 255, 1);
+            border-radius: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: calc(-1 * var(--D) / 40);
+            margin-top: calc(-1 * var(--D) / 6);
+            width: calc(var(--D) / 20);
+            height: calc(var(--D) / 6);
+        }
+
+        .velas:after,
+        .velas:before {
+            background: rgba(255, 0, 0, 0.4);
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: calc(var(--D) / 45);
+        }
+
+        .velas:after {
+            top: 25%;
+            left: 0;
+        }
+
+        .velas:before {
+            top: 45%;
+            left: 0;
+        }
+
+        .fuego {
+            border-radius: 100%;
+            box-shadow: 0 0 40px 10px rgba(248, 233, 209, 0.2);
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            margin-left: calc(-1 * var(--D) / 30);
+            width: calc(var(--D) / 15);
+            height: calc(var(--D) / 8);
+        }
+
+        .fuego:nth-child(1) {
+            animation: fuego 2s infinite;
+        }
+
+        .fuego:nth-child(2) {
+            animation: fuego 1.5s infinite;
+        }
+
+        .fuego:nth-child(3) {
+            animation: fuego 1s infinite;
+        }
+
+        .fuego:nth-child(4) {
+            animation: fuego 0.5s infinite;
+        }
+
+        .fuego:nth-child(5) {
+            animation: fuego 0.2s infinite;
+        }
+
+        @keyframes fuego {
+            0% {
+                background: rgba(254, 248, 97, 0.5);
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                background: rgba(255, 50, 0, 0.1);
+                transform: translateY(calc(-1 * var(--D) / 5)) scale(0);
+            }
+
+            100% {
+                background: rgba(254, 248, 97, 0.5);
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .cobertura {
+            background: rgba(236, 231, 227, 1);
+            border-radius: calc(var(--D) / 2);
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            margin-left: calc(-1 * var(--D) / 3.6);
+            margin-top: calc(-1 * var(--D) / 10);
+            width: calc(var(--D) / 1.8);
+            height: calc(var(--D) / 8);
+            z-index: 10;
+        }
+
+        .cobertura:after,
+        .cobertura:before {
+            background: rgba(236, 231, 227, 1);
+            border-radius: var(--D);
+            content: "";
+            position: absolute;
+            width: calc(var(--D) / 20);
+            height: calc(var(--D) / 10);
+        }
+
+        .cobertura:after {
+            top: calc(var(--D) / 15);
+            right: calc(var(--D) / 7);
+        }
+
+        .cobertura:before {
+            top: calc(var(--D) / 10);
+            right: calc(var(--D) / 11);
+        }
+
+        .bizcocho {
+            background: rgba(109, 56, 38, 1);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: calc(-1 * var(--D) / 4);
+            width: calc(var(--D) / 2);
+            height: calc(var(--D) / 3);
+        }
+
+        .bizcocho:after,
+        .bizcocho:before {
+            background: rgba(236, 231, 227, 0.6);
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: calc(var(--D) / 20);
+        }
+
+        .bizcocho:after {
+            top: 30%;
+            left: 0;
+        }
+
+        .bizcocho:before {
+            top: 60%;
+            left: 0;
+        }
+
+        h1,
+        p {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            text-align: center;
+            width: 100%;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        h1 {
+            color: white;
+            font-size: 1em;
+            margin-top: 6.8em;
+        }
+
+        p {
+            color: rgba(236, 231, 227, 0.9);
+            font-size: 0.8em;
+            line-height: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cake">
+        <div class="velas">
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+            <div class="fuego"></div>
+        </div>
+        <div class="cobertura"></div>
+        <div class="bizcocho"></div>
+        <h1>wish you <br>a <br>Many More <br>Happy Returns <br>Of <br>The Day</h1>
+        <p>-- Dosthi&#129395;</p>
+    </div>
+    <canvas id="birthday"></canvas>
+
+    <script>
+        // helper functions
+        const PI2 = Math.PI * 2
+        const random = (min, max) => Math.random() * (max - min + 1) + min | 0
+        const timestamp = _ => new Date().getTime()
+    
+        // container
+        class Birthday {
+            constructor() {
+                this.resize()
+    
+                // create a lovely place to store the firework
+                this.fireworks = []
+                this.counter = 0
+    
+            }
+    
+            resize() {
+                this.width = canvas.width = window.innerWidth
+                let center = this.width / 2 | 0
+                this.spawnA = center - center / 4 | 0
+                this.spawnB = center + center / 4 | 0
+    
+                this.height = canvas.height = window.innerHeight
+                this.spawnC = this.height * .1
+                this.spawnD = this.height * .5
+    
+            }
+    
+            onClick(evt) {
+                let x = evt.clientX || evt.touches && evt.touches[0].pageX
+                let y = evt.clientY || evt.touches && evt.touches[0].pageY
+    
+                let count = random(3, 5)
+                for (let i = 0; i < count; i++) this.fireworks.push(new Firework(
+                    random(this.spawnA, this.spawnB),
+                    this.height,
+                    x,
+                    y,
+                    random(0, 260),
+                    random(30, 110)))
+    
+                this.counter = -1
+    
+            }
+    
+            update(delta) {
+                ctx.globalCompositeOperation = 'hard-light'
+                ctx.fillStyle = `rgba(20,20,20,${7 * delta})`
+                ctx.fillRect(0, 0, this.width, this.height)
+    
+                ctx.globalCompositeOperation = 'lighter'
+                for (let firework of this.fireworks) firework.update(delta)
+    
+                // if enough time passed... create new new firework
+                this.counter += delta * 3 // each second
+                if (this.counter >= 1) {
+                    this.fireworks.push(new Firework(
+                        random(this.spawnA, this.spawnB),
+                        this.height,
+                        random(0, this.width),
+                        random(this.spawnC, this.spawnD),
+                        random(0, 360),
+                        random(30, 110)))
+                    this.counter = 0
+                }
+    
+                // remove the dead fireworks
+                if (this.fireworks.length > 1000) this.fireworks = this.fireworks.filter(firework => !firework.dead)
+    
+            }
+        }
+    
+        class Firework {
+            constructor(x, y, targetX, targetY, shade, offsprings) {
+                this.dead = false
+                this.offsprings = offsprings
+    
+                this.x = x
+                this.y = y
+                this.targetX = targetX
+                this.targetY = targetY
+    
+                this.shade = shade
+                this.history = []
+            }
+            update(delta) {
+                if (this.dead) return
+    
+                let xDiff = this.targetX - this.x
+                let yDiff = this.targetY - this.y
+                if (Math.abs(xDiff) > 3 || Math.abs(yDiff) > 3) { // is still moving
+                    this.x += xDiff * 2 * delta
+                    this.y += yDiff * 2 * delta
+    
+                    this.history.push({
+                        x: this.x,
+                        y: this.y
+                    })
+    
+                    if (this.history.length > 20) this.history.shift()
+    
+                } else {
+                    if (this.offsprings && !this.madeChilds) {
+    
+                        let babies = this.offsprings / 2
+                        for (let i = 0; i < babies; i++) {
+                            let targetX = this.x + this.offsprings * Math.cos(PI2 * i / babies) | 0
+                            let targetY = this.y + this.offsprings * Math.sin(PI2 * i / babies) | 0
+    
+                            birthday.fireworks.push(new Firework(this.x, this.y, targetX, targetY, this.shade, 0))
+    
+                        }
+    
+                    }
+                    this.madeChilds = true
+                    this.history.shift()
+                }
+    
+                if (this.history.length === 0) this.dead = true
+                else if (this.offsprings) {
+                    for (let i = 0; this.history.length > i; i++) {
+                        let point = this.history[i]
+                        ctx.beginPath()
+                        ctx.fillStyle = 'hsl(' + this.shade + ',100%,' + i + '%)'
+                        ctx.arc(point.x, point.y, 1, 0, PI2, false)
+                        ctx.fill()
+                    }
+                } else {
+                    ctx.beginPath()
+                    ctx.fillStyle = 'hsl(' + this.shade + ',100%,50%)'
+                    ctx.arc(this.x, this.y, 1, 0, PI2, false)
+                    ctx.fill()
+                }
+    
+            }
+        }
+    
+        let canvas = document.getElementById('birthday')
+        let ctx = canvas.getContext('2d')
+    
+        let then = timestamp()
+    
+        let birthday = new Birthday
+        window.onresize = () => birthday.resize()
+        document.onclick = evt => birthday.onClick(evt)
+        document.ontouchstart = evt => birthday.onClick(evt)
+    
+            ; (function loop() {
+                requestAnimationFrame(loop)
+    
+                let now = timestamp()
+                let delta = now - then
+    
+                then = now
+                birthday.update(delta / 1000)
+    
+    
+            })()
+    </script>
+</body>
+
+
+
+</html>

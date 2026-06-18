@@ -1,0 +1,258 @@
+<html lang="en">
+
+<head>
+    <title>Make a Wish🪄</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <audio id="myAudio">
+        <source
+            src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_629a62af21.mp3?filename=magic-smite-6012.mp3"
+            type="audio/mpeg">
+    </audio>
+    <!-- <audio id="myAudio">
+        <source
+            src="https://cdn.pixabay.com/download/audio/2022/03/21/audio_5ba197be82.mp3?filename=woosh_low_long01-98755.mp3"
+            type="audio/mpeg">
+    </audio> -->
+    <audio id="wish-granted-audio">
+        <source
+        src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_7084f5754c.mp3?filename=fantasy_ui_button_6-102219.mp3"
+        type="audio/mpeg">
+    </audio>
+    <!-- <audio id="wish-granted-audio">
+        <source
+        src="https://cdn.pixabay.com/download/audio/2022/07/15/audio_89f13f8631.mp3?filename=sound-effect-twinklesparkle-115095.mp3"
+        type="audio/mpeg">
+    </audio> -->
+
+    <form method="POST"
+        action="https://script.google.com/macros/s/AKfycbz3HSJcnxsR8-iZx3gGKIMi7urGOomYMG1W-cGv3LwKsrqVrN1dRXM5AF5uNm2p5Rc7_w/exec"
+        id="my-form">
+        <div class="element">
+            <input name="Name" type="text" placeholder="name &#128060;" required>
+        </div>
+        <div class="element">
+            <input name="Wish" type="text" placeholder="Make a wish :) &#127776;  " required>
+        </div>
+        <div onclick="wishGranted()" class="element">
+            <button class="btn btn1" type="submit">
+                <!-- &#128302; -->
+                <!-- ✨I Wish✨ -->
+            </button>
+        </div>
+        <div onclick="playAudio()" class="magic-lamp"></div>
+        <div class="genie"></div>
+        <div class="wish-granted"></div>
+    </form>
+</body>
+<style>
+    html {
+        background-color: gold;
+        border-radius: 10%;
+        padding-top: 56%;
+        /* background-color: black; */
+        /* background-repeat: no-repeat; */
+        /* background-size: cover; */
+        /* background-image: url("https://www.opticalillusionsportal.com/wp-content/uploads/2022/05/Optical-illusions-Shapes.gif"); */
+    }
+
+    body {
+        /* padding-top: 15%; */
+        border: 2px solid black;
+        border-radius: 86% 8% 81% 7%;
+        box-shadow: -1px 12px 13px 12px;
+        height: 137vh;
+        margin: -36%;
+        background-color: purple;
+        width: 219%;
+        /* overflow: hidden; */
+
+    }
+
+    form {
+        margin: 10% 17% 2% 22%;
+        border: 1px solid black;
+        /*top right bottom left*/
+        height: 109vh;
+        padding-top: 33%;
+        border-radius: 10% 89% 7% 89%;
+        box-shadow: 17px 21px 14px 8px;
+        background-color: rgb(21, 0, 137);
+
+        /* background-repeat: no-repeat; */
+        /* background-size: cover ; */
+        /* overflow: hidden; */
+
+    }
+
+    div {
+        align-items: center;
+    }
+
+    .element {
+        margin: 2%;
+        text-align: center;
+    }
+
+    input {
+        margin-left: -10%;
+        width: 67%;
+        height: 7%;
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: groove;
+        font-size: 314%;
+        /* background-color: #eee; */
+    }
+
+    /* .btn { */
+    /* height: 6vh;
+        width: 10%;
+        margin-left: -7%;
+        font-size: 360%;
+        border-radius: 58%; */
+    /* } */
+
+    .btn1 {
+        height: 6vh;
+        width: 10%;
+        margin-left: -7%;
+        font-size: 360%;
+        border-radius: 58%;
+        background-color: rgb(20, 20, 20);
+        border-color: rgb(31, 31, 31);
+        height: 6vh;
+        width: 10%;
+        margin-left: -7%;
+        font-size: 360%;
+        border-radius: 58%;
+        background-color: black;
+        background-image: url("https://thumbs.gfycat.com/BoldClosedGrison-size_restricted.gif");
+        background-image: url("https://media4.giphy.com/media/nujJlgTpJHMdZjiJVH/200w.gif?cid=6c09b9529k5aln2cp8trfi8h1ajrp8ur0sm9jg93vr6g6a5b&rid=200w.gif&ct=g");
+        background-image: url("https://i.pinimg.com/originals/1a/0c/75/1a0c75709e3f71a0018eabfefccc840c.gif");
+        background-position: 48% -84%;
+        background-size: 100% 99%;
+        background-repeat: no-repeat;
+        box-shadow: 3px 3px 11px 3px rgb(18, 16, 16);
+
+    }
+
+    ::-webkit-input-placeholder {
+        text-align: center;
+    }
+
+    :-moz-placeholder {
+        text-align: center;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .genie,
+    .wish-granted {
+        height: 35%;
+        width: 35%;
+        margin-left: 30%;
+        border-radius: 50%;
+        background-image: url("https://data.whicdn.com/images/280950245/original.gif");
+        background-image: url("https://media4.giphy.com/media/nujJlgTpJHMdZjiJVH/200w.gif?cid=6c09b9529k5aln2cp8trfi8h1ajrp8ur0sm9jg93vr6g6a5b&rid=200w.gif&ct=g");
+        background-image: url("https://media0.giphy.com/media/tpTOw6sljB2U/giphy.gif");
+        background-image: url("https://media4.giphy.com/media/fAnvkOomfHZdXv4ZYR/giphy.gif?cid=6c09b9523nloixq7hu91pbgp6swrgrpavsh6oauxqdr9wtyu&rid=giphy.gif&ct=s");
+        /* background-image: url("https://media0.giphy.com/media/kp0Yg0Iw4pIyD8Vyk2/200w.gif?cid=6c09b952fjy8rlyk01rkepld5drlddb8lipkenjxcepsp2i9&rid=200w.gif&ct=g"); */
+        background-image: url("https://media0.giphy.com/media/tpTOw6sljB2U/giphy.gif");
+        /*background-image: url("https://media.tenor.com/fk-o6pfRE9IAAAAC/bye-long.gif"); /* wish dragon*/
+        /* background-image: url("https://images.ctfassets.net/dqbqab5lm2pa/4CLyOYPHmHN3ii1s2mccR7/3943c19d9067a5de5535e8be56078103/Wish_Dragon-5.gif?w=1000&q=75"); */
+        /* background-image: url("https://media4.giphy.com/media/S3Jrqq0djSClVR2wkG/200w.gif?cid=82a1493bz5c7viqxdo7cmnt6bbdqq8y3rb14bqf8q5gfghi5&rid=200w.gif&ct=s"); */
+        background-position: 48% -84%;
+        background-position: 53% 54%;
+        background-size: 61% 32%, cover;
+        background-size: 109% 99%;
+        background-repeat: no-repeat;
+        background-color: black;
+
+    }
+
+    .wish-granted {
+        background-image: url("https://i.imgur.com/4jhXMX2.gif");
+        background-image: url("https://i.gifer.com/XZ5V.gif"), url("https://i0.wp.com/iamsteve.in/wp-content/uploads/2014/11/spin.gif?ssl=1");
+        background-image: url("https://images.ctfassets.net/dqbqab5lm2pa/4CLyOYPHmHN3ii1s2mccR7/3943c19d9067a5de5535e8be56078103/Wish_Dragon-5.gif?w=1000&q=75");
+
+    }
+
+    .magic-lamp {
+        width: 20%;
+        height: 18%;
+        color: white;
+        background-image: url("https://media1.giphy.com/media/fW5meFJNRYevzBZHtF/giphy.gif?cid=6c09b952c944006e7e5cff6c8a093333da94e4b860533441&rid=giphy.gif&ct=s");
+        margin-left: 37%;
+        margin-top: -11%;
+        margin-bottom: -5%;
+        background-size: 101% 62%;
+        background-repeat: no-repeat;
+        background-position: 40% 18%;
+        padding-top: 5%;
+    }
+</style>
+<script>
+
+    var y = document.getElementById("myAudio");
+    var x = document.getElementById("wish-granted-audio");
+
+    function playAudio() {
+        x.play();
+    
+    }
+    function wishGranted() {
+        y.play();
+        x.play();
+    }
+
+    $(document).ready(function () {
+        $(".element").hide();
+        $(".wish-granted").hide();
+        // $(".genie").show();
+        $(".magic-lamp").click(function () {
+            $(".element").show(1000);
+            $(".magic-lamp").hide(1000);
+            $(".genie").hide();
+        });
+    });
+    window.addEventListener("load", function () {
+        const form = document.getElementById('my-form');
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            $(".element").hide();
+            $('.wish-granted').show();
+            $('.wish-granted').delay(2500).fadeOut();
+            const data = new FormData(form);
+            const action = e.target.action;
+            fetch(action, {
+                method: 'POST',
+                body: data,
+                // headers: {
+                //     'Content-Type': 'text/plain;charset=utf-8',
+                // }
+            })
+                .then(() => {
+                    // $(document).ready(function () {
+                    // $("#hide").click(function () {
+                    // $(".element").hide();
+                    // });
+                    // $("#show").click(function () {
+
+                    $(".genie").delay(5000).show();
+                    $(".magic-lamp").delay(5000).show();
+                    // });
+                    // });
+                })
+        });
+    });
+
+</script>
+
+</html>
