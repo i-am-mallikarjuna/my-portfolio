@@ -1,0 +1,63 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Integrating bootstarp -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- //BI(boot icons) -->
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- //for cam -->
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+
+
+</head>
+
+<body class="text-center">
+    <button>
+        <input class="input" type="file" name="file-input" id="file-input" accept="image/*" capture="camera" />
+        <label for="file-input">
+            <i class="bi bi-camera" style="font-size:100px; "></i></label>
+    </button>
+
+    <script>
+        var cam = document.getElementById('file-input');
+        var rot = new Webcam(cam, 'user');
+        rot.start()
+            .then(result => {
+                console.log("webcam started");
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        rot.flip()
+
+    </script>
+
+
+    <style>
+        input {
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+
+        button {
+            border-radius: 50%;
+            margin-top: 30%;
+            background-color: black;
+            color: white;
+        }
+    </style>
+
+</body>
+
+</html>

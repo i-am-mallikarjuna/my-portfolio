@@ -1,0 +1,430 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make wish re</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div id="data"></div>
+    <audio id="cave-audio">
+        <source src="
+            https://cdn.pixabay.com/download/audio/2022/03/21/audio_860a939cd9.mp3?filename=quake-and-break-99034.mp3"
+            type="audio/mpeg">
+    </audio>
+    <audio id="genie-release">
+        <source src="
+        https://assets.mixkit.co/active_storage/sfx/868/868-preview.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="wrongTreasure">
+        <source src="
+        https://cdn.pixabay.com/download/audio/2022/03/10/audio_174242f3f4.mp3?filename=medium-explosion-40472.mp3"
+            type="audio/mpeg">
+    </audio>
+    <audio id="myAudio">
+        <source
+            src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_629a62af21.mp3?filename=magic-smite-6012.mp3"
+            type="audio/mpeg">
+    </audio>
+    <audio id="wish-granted-audio">
+        <source
+            src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_7084f5754c.mp3?filename=fantasy_ui_button_6-102219.mp3"
+            type="audio/mpeg">
+    </audio>
+    <div class="cave" onclick="playCaveSound()">
+        <p class="cave-txt"></p>
+    </div>
+    <div class="cave-inside" id="cave-inside">
+        <div class="lamp" onclick="releaseGenie(true)"></div>
+        <div class="row row1">
+            <div class="col-md-3 treasure treasure1" onclick="releaseGenie(false)"></div>
+            <div class="col-md-3 treasure treasure2" onclick="releaseGenie(false)"></div>
+        </div>
+        <div class="row row2">
+            <div class="col-md-3 treasure treasure3" onclick="releaseGenie(false)"></div>
+            <div class="col-md-3 treasure treasure4" onclick="releaseGenie(false)"></div>
+        </div>
+        <div class="row row3">
+            <div class="col-md-3 treasure " onclick="releaseGenie(false)"></div>
+            <div class="col-md-3 treasure treasure2" onclick="releaseGenie(false)"></div>
+        </div>
+    </div>
+    <div class="genie">
+        <p class="genie-rules" onclick="showWishForm()"> </p>
+
+        <form method="POST"
+            action="https://script.google.com/macros/s/AKfycbzuomzP3RiNtgFQH6KKVVeMwAPD9QNnLlyGbeISoWCi10LZVxbGFTq4fLLxKqKw4tzaHg/exec"
+            id="my-form">
+            <div class="element">
+                <input name="Name" type="text" placeholder="Name &#128060;" required>
+            </div>
+            <div class="element">
+                <input name="Wish" type="text" placeholder="Make a wish :) &#127776;  " required>
+            </div>
+            <div onclick="wishGranted()" class="element">
+                <button class="btn btn1" type="submit">
+                    <!-- &#128302; -->
+                    <!-- ✨I Wish✨ -->
+                </button>
+            </div>
+            <div onclick="playAudio()" class="magic-lamp">
+                <p id="magic-lamp-hint"></p>
+            </div>
+            <div class="genie1"></div>
+            <div class="wish-granted">
+                <p id="wish-granted"></p>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<style>
+    html {
+        background-color: black;
+    }
+
+    body {
+        background-color: black;
+    }
+
+    .cave {
+        height: 100%;
+        width: 100%;
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 48% 50%;
+        background-image: url("https://64.media.tumblr.com/ab59b93bb69178786323f29d275cf449/tumblr_ptdr066sVm1rmcob0o1_250.gif");
+    }
+
+    .cave-txt,
+    .genie-rules {
+        color: white;
+        font-size: 120%;
+    }
+
+    .cave-inside {
+        height: 100%;
+        width: 100%;
+        background-image: url("https://cdn.dribbble.com/users/6738303/screenshots/14910132/aladdin_cave.jpg");
+        /* background-image: url("https://i.imgur.com/28fs6.png"); */
+        background-size: 151% 116%;
+        background-repeat: no-repeat;
+        background-position: 97% 0%;
+    }
+
+    .lamp {
+        height: 24%;
+        width: 36%;
+        background-image: url("https://media1.giphy.com/media/fW5meFJNRYevzBZHtF/giphy.gif?cid=6c09b952c944006e7e5cff6c8a093333da94e4b860533441&rid=giphy.gif&ct=s");
+        margin-left: 37%;
+        margin-bottom: -22%;
+        background-size: 101% 56%;
+        background-repeat: no-repeat;
+        background-position: 71% -3%;
+    }
+
+
+    .row1 {
+        margin-top: 10%;
+    }
+
+    .col-md-3 {
+        display: inline-block;
+    }
+
+    .treasure,
+    .treasure1,
+    .treasure2 {
+        height: 21%;
+        width: 31%;
+        background-size: 100% 63%;
+        background-repeat: no-repeat;
+        background-position: 64% 11%;
+        border-radius: 2 3 6 8;
+    }
+
+    .treasure1,
+    .treasure3,
+    .treasure5 {
+        margin-left: 7%;
+        background-image: url("https://img1.picmix.com/output/stamp/normal/8/8/0/5/1305088_48c29.gif");
+    }
+
+    .treasure2,
+    .treasure4,
+    .treasure6 {
+        margin-left: 15%;
+        width: 44%;
+        background-image: url("https://img1.picmix.com/output/stamp/normal/1/2/0/6/2036021_c5488.gif");
+    }
+
+    .treasure3 {
+        background-image: url("https://media.tenor.com/GLT-EL6OiBUAAAAj/buried-treasure.gif");
+    }
+
+    .treasure4 {
+        background-image: url("https://i.imgur.com/ldUxcEN.gif");
+    }
+
+    .treasure5 {
+        background-image: url("https://media4.giphy.com/media/8OTwsxpkOES0iTDG1D/200w.gif?cid=82a1493ba6wnlrijr39u96anksfyn6jj22uciai21a6ambm4&ep=v1_gifs_related&rid=200w.gif&ct=g");
+        background-image: url("https://media.giphy.com/media/uW2MherJadX2td4wnY/giphy.gif");
+    }
+
+    .treasure6 {
+        margin-left: 10%;
+        background-position-y: -109%;
+        background-size: 100% 81%;
+        background-image: url("https://www.shutterstock.com/shutterstock/videos/1098412539/thumb/1.jpg?ip=x480");
+    }
+
+    form {
+        margin: 10% 17% 2% 22%;
+        border: 1px solid black;
+        height: 109vh;
+        padding-top: 33%;
+
+    }
+
+
+    .element {
+        margin: 2%;
+        text-align: center;
+    }
+
+    input {
+        margin-left: -10%;
+        width: 110%;
+        height: 7%;
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: groove;
+        font-size: 112%;
+    }
+
+    .btn1 {
+        height: 6vh;
+        width: 10%;
+        margin-left: -7%;
+        font-size: 360%;
+        border-radius: 58%;
+        background-color: rgb(20, 20, 20);
+        border-color: rgb(31, 31, 31);
+        height: 8vh;
+        width: 28%;
+        margin-left: -7%;
+        font-size: 360%;
+        border-radius: 58%;
+        background-color: black;
+        background-image: url("https://i.pinimg.com/originals/1a/0c/75/1a0c75709e3f71a0018eabfefccc840c.gif");
+        background-position: 48% -84%;
+        background-size: 100% 99%;
+        background-repeat: no-repeat;
+        box-shadow: 3px 3px 11px 3px rgb(18, 16, 16);
+
+    }
+
+    ::-webkit-input-placeholder {
+        text-align: center;
+    }
+
+    :-moz-placeholder {
+        text-align: center;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    .genie1,
+    .wish-granted {
+        height: 35%;
+        width: 35%;
+        margin-left: 30%;
+        border-radius: 50%;
+        background-image: url("https://media0.giphy.com/media/tpTOw6sljB2U/giphy.gif");
+        background-position: 48% -84%;
+        background-position: 53% 54%;
+        background-size: 61% 32%, cover;
+        background-size: 109% 99%;
+        background-repeat: no-repeat;
+        background-color: black;
+
+    }
+
+    .wish-granted {
+        background-image: url("https://i.gifer.com/XZ5V.gif"), url("https://i0.wp.com/iamsteve.in/wp-content/uploads/2014/11/spin.gif?ssl=1");
+        background-image: url("https://images.ctfassets.net/dqbqab5lm2pa/4CLyOYPHmHN3ii1s2mccR7/3943c19d9067a5de5535e8be56078103/Wish_Dragon-5.gif?w=1000&q=75");
+
+    }
+
+    .magic-lamp {
+        width: 59%;
+        height: 25%;
+        color: white;
+        background-image: url("https://media1.giphy.com/media/fW5meFJNRYevzBZHtF/giphy.gif?cid=6c09b952c944006e7e5cff6c8a093333da94e4b860533441&rid=giphy.gif&ct=s");
+        margin-left: 20%;
+        margin-top: -11%;
+        margin-bottom: -17%;
+        background-size: 103% 62%;
+        background-repeat: no-repeat;
+        background-position: 33% 18%;
+        padding-top: 5%;
+    }
+
+    #magic-lamp-hint,
+    #wish-granted {
+        margin: 98px 0 10px;
+        text-align: center;
+        color: white;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+<script>
+    var value = 0;
+    window.onload = console.log(fetchData);
+    if (!value) {
+        function caveMsgTxt() {
+            var cave_msg = "Only one may enter here... <br>" +
+                "One whose lies far within... <br>" + "<b>The diamond in the rough</b>" +
+                "<br>I know the only one is YOU... <br>" + "You are pleased to enter re... :) <br>" +
+                "(It's a hope... came to ur friend's." + "All wishes are tied to wish tree and will come true re)";
+
+            var typed = new Typed(".cave-txt", {
+                strings: [cave_msg],
+                showCursor: true,
+                cursorChar: "&#128511;",
+                typeSpeed: 23,
+                backSpeed: 0,
+                fadeOut: true,//removing backspace effect
+                loop: false,
+            })
+        }
+        function genieMsgTxt() {
+            var genie_msg = "<b>I will Grant you wishes. </b>" +
+                "<i>But I have few conditions</i> <br>" +
+                "<ul><li>Can't hurt anyone</li>" +
+                "<li>Can't make people fall in love</li>" +
+                "<li>Can't bring anyone back from the dead</li>" +
+                "<li>You may don't see the results immedietly... <br> But definetly they will comes true</li>" +
+                "</ul>";
+
+            var typed = new Typed(".genie-rules", {
+                strings: [genie_msg],
+                showCursor: true,
+                cursorChar: "&#129502",
+                typeSpeed: 23,
+                backSpeed: 0,
+                fadeOut: true,//removing backspace effect
+                loop: false,
+            })
+        }
+
+        function playCaveSound() {
+            var caveSound = document.getElementById("cave-audio");
+            caveSound.play();
+            $(".cave").fadeTo("slow", 0.1);
+            $(".cave").fadeOut(7000);
+            // $(".cave").hide();
+            $(".cave-inside").show(8000);
+        }
+        function releaseGenie(value) {
+            if (value) {
+                $('form').hide();
+                var genieRelease = document.getElementById("genie-release");
+                genieRelease.play();
+                let element = document.getElementById("cave-inside");
+                element.style.backgroundImage = "url('https://media.giphy.com/media/bU3bD2rsKq02Q/giphy.gif')";
+                element.style.backgroundSize = "105% 103%";
+                $('.lamp').hide();
+                $('.row').hide();
+                setTimeout(() => { $(".cave-inside").fadeOut(3800);; }, 2000);
+                $(".genie").delay(2500).show();
+                genieMsgTxt();
+                document.getElementById("magic-lamp-hint").innerHTML = "Touch the lamp";
+            } else {
+                var wrongTreasure = document.getElementById("wrongTreasure");
+                wrongTreasure.play();
+            }
+        }
+        function showWishForm() {
+            $('.genie-rules').hide();
+            $('form').show();
+            $(".element").hide();
+            $(".wish-granted").hide();
+            $(".magic-lamp").click(function () {
+                $(".element").show(1000);
+                $(".magic-lamp").hide(1000);
+                $(".genie1").hide();
+            });
+            $(".typed-cursor").hide();
+        }
+        window.addEventListener("load", function () {
+            const form = document.getElementById('my-form');
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+                $(".element").hide();
+                $('.wish-granted').show();
+                document.getElementById("wish-granted").innerHTML = "Wish will come true <br> <b>Belive</b>";
+                $('.wish-granted').delay(2500).fadeOut();
+                const data = new FormData(form);
+                const action = e.target.action;
+                fetch(action, {
+                    method: 'POST',
+                    body: data,
+                })
+                    .then(() => {
+
+                        $(".genie1").delay(5000).show();
+                        $(".magic-lamp").delay(5000).show();
+
+                    })
+            });
+        });
+
+        var y = document.getElementById("myAudio");
+        var x = document.getElementById("wish-granted-audio");
+        function playAudio() {
+            x.play();
+        }
+        function wishGranted() {
+            y.play();
+            x.play();
+        }
+        $(document).ready(function () {
+            $('#data').hide();
+            $(".cave-inside").hide();
+            $(".genie").hide();
+            caveMsgTxt();
+        })
+    }
+    else {
+        $('.cave').hide();
+        $(".cave-inside").hide();
+        $(".genie").hide();
+        function fetchData() {
+            var url = 'https://script.google.com/macros/s/AKfycbzCu7D5rlvb22tQOSMBgAm2BdCTxgbFXm2SzQgGHvQF/dev'; // Replace with the actual URL of your web app
+            console.log(url);
+            fetch(url)
+                .then(function (response) {
+                    console.log(response.text());
+                    return response.text();
+                })
+                .then(function (data) {
+                    console.log(data);
+                    value = data;
+                    document.getElementById('data').innerHTML = data;
+                });
+        }
+    }
+</script>
+
+</html>
