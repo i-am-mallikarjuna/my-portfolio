@@ -8,7 +8,7 @@
             <mat-icon class="gear-large">settings</mat-icon>
             <mat-icon class="gear-small">settings</mat-icon>
         </div>
-        <p class="status-msg">Loading data from Google Sheets...</p>
+        <p class="status-msg">Loading data, have a breath...</p>
     </div>
     } @else if (errorMessage) {
     <p class="status-msg error">{{ errorMessage }}</p>
@@ -21,7 +21,13 @@
         </div>
         }
         @if (pageContent.length === 0) {
-        <p class="status-msg">No content found in spreadsheet. Go add some!</p>
+            <div class="loading-container">
+                <div class="gear-wrapper">
+                    <mat-icon class="gear-large">settings</mat-icon>
+                    <mat-icon class="gear-small">settings</mat-icon>
+                </div>
+                <p class="status-msg">Nothing is here to display. Having any thoughts? Just click on Add</p>
+            </div>
         }
     </div>
     }
