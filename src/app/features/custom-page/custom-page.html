@@ -1,0 +1,28 @@
+<section class="main-container">
+    <h2 class="section-title shine-text">Custom Page</h2>
+
+    @if (isLoading) {
+    <!-- The New Spinning Gears Loading Screen -->
+    <div class="loading-container">
+        <div class="gear-wrapper">
+            <mat-icon class="gear-large">settings</mat-icon>
+            <mat-icon class="gear-small">settings</mat-icon>
+        </div>
+        <p class="status-msg">Loading data from Google Sheets...</p>
+    </div>
+    } @else if (errorMessage) {
+    <p class="status-msg error">{{ errorMessage }}</p>
+    } @else {
+    <div class="content-grid">
+        @for (item of pageContent; track $index) {
+        <div class="content-card">
+            <span class="date-badge">{{ item.date | date:'mediumDate' }}</span>
+            <p class="text-body">{{ item.text }}</p>
+        </div>
+        }
+        @if (pageContent.length === 0) {
+        <p class="status-msg">No content found in spreadsheet. Go add some!</p>
+        }
+    </div>
+    }
+</section>

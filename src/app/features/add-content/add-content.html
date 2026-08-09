@@ -1,0 +1,10 @@
+<section class="main-container">
+    <h2 class="section-title shine-text">Add New Content</h2>
+    <div class="input-card">
+        <textarea [(ngModel)]="newText" placeholder="Type your content here..." rows="5" [disabled]="isSaving">
+        </textarea>
+        <button class="save-btn" (click)="save()" [disabled]="isSaving || !newText.trim()">
+            {{ isSaving ? 'Saving to Database...' : 'Publish Content' }}
+        </button>
+    </div>
+</section>
