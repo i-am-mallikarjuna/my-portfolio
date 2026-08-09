@@ -13,6 +13,7 @@
     } @else if (errorMessage) {
     <p class="status-msg error">{{ errorMessage }}</p>
     } @else {
+    <br> <br> <br>
     <div class="content-grid">
         @for (item of pageContent; track $index) {
         <div class="content-card">
@@ -21,13 +22,13 @@
         </div>
         }
         @if (pageContent.length === 0) {
-            <div class="loading-container">
-                <div class="gear-wrapper">
-                    <mat-icon class="gear-large">settings</mat-icon>
-                    <mat-icon class="gear-small">settings</mat-icon>
-                </div>
-                <p class="status-msg">Nothing is here to display. Having any thoughts? Just click on Add</p>
+        <div class="loading-container">
+            <div class="gear-wrapper">
+                <mat-icon class="gear-large">settings</mat-icon>
+                <mat-icon class="gear-small">settings</mat-icon>
             </div>
+            <p class="status-msg">Nothing is here to display. Having any thoughts? Just click on Add</p>
+        </div>
         }
     </div>
     }
