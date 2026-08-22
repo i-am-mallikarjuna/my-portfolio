@@ -43,6 +43,29 @@
         transform: rotate(-360deg);
     }
 }
+
+    .progress-track {
+    width: 200px;
+    height: 4px;
+    background: var(--card-border); /* Uses your existing dark theme border color */
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    }
+    .progress-fill {
+    width: 40%;
+    height: 100%;
+    background: var(--brand-blue);
+    border-radius: 4px;
+    position: absolute;
+    animation: sweep 1.5s ease-in-out infinite;
+    }
+    @keyframes sweep {
+    0% { left: -40%; }
+    100% { left: 100%; }
+    }
+
+
 .content-grid {
     display: flex;
     flex-direction: column;

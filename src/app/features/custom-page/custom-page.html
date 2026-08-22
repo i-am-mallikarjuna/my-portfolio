@@ -8,7 +8,12 @@
             <mat-icon class="gear-large">settings</mat-icon>
             <mat-icon class="gear-small">settings</mat-icon>
         </div>
-        <p class="status-msg">Loading data, have a breath...</p>
+
+        <p class="status-msg">Fetching data for you. Have a breath...</p>
+        <div class="progress-track">
+            <div class="progress-fill"></div>
+        </div>
+          
     </div>
     } @else if (errorMessage) {
     <p class="status-msg error">{{ errorMessage }}</p>
