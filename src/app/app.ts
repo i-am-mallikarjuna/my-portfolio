@@ -12,8 +12,12 @@ import { Navbar } from "./shared/navbar/navbar";
 })
 export class App implements OnInit {
   private router = inject(Router);
+  private cachedLocationData: any = null;
 
   ngOnInit() {
+    // Force refresh if a new version is deployed
+    this.checkForUpdates();
+
     // Log the very first visit
     this.logVisitorData();
 
@@ -25,28 +29,55 @@ export class App implements OnInit {
     });
   }
 
+  async checkForUpdates() {
+    try {
+      // Fetch version with a timestamp to bypass browser cache
+      const response = await fetch(`/version.json?t=${Date.now()}`);
+      const data = await response.json();
+      const currentVersion = data.version;
+      const storedVersion = localStorage.getItem('app_version');
+
+      if (storedVersion !== currentVersion) {
+        console.log('New version detected! Updating...');
+        localStorage.setItem('app_version', currentVersion);
+
+        // Clear cache and reload
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Version check failed', error);
+    }
+  }
+
   logVisitorData() {
-    // 1. Fetch the user's IP and Location from a free public API
-    fetch('https://ipapi.co/json/')
-      .then(response => response.json())
-      .then(locationData => {
+    const sendToSheet = (locationData: any) => {
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzKpuTnVT1O0pb6gz2wiXdVuhvBO-GvhlwG2Kh2EAc5qrSA4G3Ue1MHxnGMoalUuFqNhg/exec';
+      const payload = {
+        ...locationData,
+        routername: this.router.url
+      };
 
-        // 2. Send that data to your Google Sheet Web App
-        const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzKpuTnVT1O0pb6gz2wiXdVuhvBO-GvhlwG2Kh2EAc5qrSA4G3Ue1MHxnGMoalUuFqNhg/exec';
-        const payload = {
-          ...locationData,
-          routername: this.router.url
-        };
+      fetch(googleScriptUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+    };
 
-        fetch(googleScriptUrl, {
-          method: 'POST',
-          mode: 'no-cors', // Bypasses browser security warnings for background tracking
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-      })
-      .catch(error => console.error('Tracking blocked or failed', error));
+    // Use cached data if available to avoid Rate Limiting
+    if (this.cachedLocationData) {
+      sendToSheet(this.cachedLocationData);
+    } else {
+      // First time: Fetch the user's IP and Location
+      fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(locationData => {
+          this.cachedLocationData = locationData;
+          sendToSheet(locationData);
+        })
+        .catch(error => console.error('Tracking blocked or failed', error));
+    }
   }
 
   protected readonly title = signal('MyPortfolio-UI');
