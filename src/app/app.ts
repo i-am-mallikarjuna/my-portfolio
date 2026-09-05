@@ -1,5 +1,6 @@
 import { Component, signal, OnInit, inject } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 import { Navbar } from "./shared/navbar/navbar";
 
 @Component({
@@ -13,7 +14,15 @@ export class App implements OnInit {
   private router = inject(Router);
 
   ngOnInit() {
+    // Log the very first visit
     this.logVisitorData();
+
+    // Log every subsequent route change
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.logVisitorData();
+    });
   }
 
   logVisitorData() {
