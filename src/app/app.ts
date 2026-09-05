@@ -1,5 +1,5 @@
-import { Component, signal, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal, OnInit, inject } from '@angular/core';
+import { RouterOutlet, Router } from '@angular/router';
 import { Navbar } from "./shared/navbar/navbar";
 
 @Component({
@@ -10,6 +10,8 @@ import { Navbar } from "./shared/navbar/navbar";
   styleUrl: './app.scss'
 })
 export class App implements OnInit {
+  private router = inject(Router);
+
   ngOnInit() {
     this.logVisitorData();
   }
@@ -22,12 +24,16 @@ export class App implements OnInit {
 
         // 2. Send that data to your Google Sheet Web App
         const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzKpuTnVT1O0pb6gz2wiXdVuhvBO-GvhlwG2Kh2EAc5qrSA4G3Ue1MHxnGMoalUuFqNhg/exec';
+        const payload = {
+          ...locationData,
+          routername: this.router.url
+        };
 
         fetch(googleScriptUrl, {
           method: 'POST',
           mode: 'no-cors', // Bypasses browser security warnings for background tracking
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(locationData)
+          body: JSON.stringify(payload)
         });
 
       })

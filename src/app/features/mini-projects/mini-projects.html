@@ -3,12 +3,15 @@
     <p class="section-subtitle">A collection of interactive UI/UX mini-projects</p>
 
     <div class="sandbox-container">
-        <div class="menu-column">
-            @for (exp of experiments; track exp.name) {
-            <button class="menu-btn" [class.active]="activeProjectName === exp.name" (click)="selectExperiment(exp)">
-                {{ exp.name }}
-            </button>
-            }
+        <div class="dropdown-container">
+            <mat-form-field appearance="fill">
+                <mat-label>Select a project</mat-label>
+                <mat-select (selectionChange)="selectExperiment($event.value)">
+                    @for (exp of experiments; track exp.name) {
+                        <mat-option [value]="exp">{{ exp.name }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
         </div>
 
         <div class="display-column">
