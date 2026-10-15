@@ -7,14 +7,19 @@
     margin-bottom: 1.5rem;
 
     h3 {
-        color: #1976d2;
-        /* Professional Azure/Blue theme [cite: 399] */
+        color: var(--brand-blue);
         margin-bottom: 0.5rem;
         font-weight: 500;
     }
 }
 
 .skill-chip {
-    background-color: #e3f2fd !important;
-    /* Subtle blue background */
+    /* Override Material Design 3 internal variables for the chip */
+    --mdc-chip-label-text-color: var(--text-primary) !important;
+    --mdc-chip-container-color: var(--card-bg) !important;
+    --mdc-chip-outline-color: var(--card-border) !important;
+
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--card-border) !important;
 }

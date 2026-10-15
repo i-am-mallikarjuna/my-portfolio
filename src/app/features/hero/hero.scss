@@ -61,4 +61,39 @@
         padding-bottom: 0;
         /* Cleans up default Angular Material spacing */
     }
+
+    .contact-group {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* Consistent Button Styling */
+    .contact-group a,
+    mat-card-actions a,
+    mat-card-actions button {
+        border-radius: 20px !important;
+        padding: 0 20px !important;
+        font-weight: 500 !important;
+        transition: all 0.3s ease !important;
+    }
+
+    /* Use the brand color for a professional, consistent look across all CTA buttons */
+    .contact-group a,
+    mat-card-actions a[href="#projects"],
+    mat-card-actions button[routerLink="/resume"] {
+        background-color: var(--brand-blue) !important;
+        color: white !important;
+        border: 1px solid var(--brand-blue) !important;
+    }
+
+    .contact-group a:hover,
+    mat-card-actions a[href="#projects"]:hover,
+    mat-card-actions button[routerLink="/resume"]:hover {
+        filter: brightness(1.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
 }

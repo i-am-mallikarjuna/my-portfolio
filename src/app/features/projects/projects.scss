@@ -7,6 +7,13 @@
     font-size: 2rem;
     font-weight: 700;
     color: var(--brand-blue);
+    margin-bottom: 2rem;
+}
+
+.filter-bar {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
 }
 
 .projects-grid {
@@ -58,8 +65,14 @@
 }
 
 .tech-chip {
-    background-color: #e3f2fd !important;
-    color: var(--brand-blue) !important;
+    /* Fix visibility in dark themes using MDC variables */
+    --mdc-chip-label-text-color: var(--text-primary) !important;
+    --mdc-chip-container-color: var(--card-bg) !important;
+    --mdc-chip-outline-color: var(--card-border) !important;
+
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--card-border) !important;
     font-weight: 500;
 }
 

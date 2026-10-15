@@ -1,47 +1,39 @@
-import { Component, inject } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mini-projects',
   standalone: true,
-  imports: [CommonModule, FormsModule, MatFormFieldModule, MatSelectModule, MatIconModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './mini-projects.html',
   styleUrl: './mini-projects.scss',
 })
 export class MiniProjects {
-  // Inject Angular's security sanitizer so the iframe doesn't block your code
-  private sanitizer = inject(DomSanitizer);
-
-  // List of your HTML files. Update these exact filenames if needed!
-  experiments = [
-    { name: 'Beating Heart', path: 'mini-projects/beating-heart.html' },
-    // { name: 'Button Bear', path: 'mini-projects/button-bear.html' },
-    { name: 'Funny Black Holes', path: 'mini-projects/FunnyBlackHoles.html' },
-    { name: 'Glowing Text', path: 'mini-projects/glowingText.html' },
-    { name: 'Digital Wish Tree', path: 'mini-projects/DigitalWishTree.html' },
-    { name: 'Ghost Boo', path: 'mini-projects/Boo.html' },
-    { name: 'Interactive Book', path: 'mini-projects/Book.html' },
-    { name: 'Circle Lines', path: 'mini-projects/circleLines.html' },
-    { name: 'HBD Tuffy', path: 'mini-projects/HappyBirthday_Tuffy.html' },
-    // { name: 'HBD Tuffy (Alt)', path: 'mini-projects/HappyBirthdayTufffy .html' }
+  projects = [
+    { title: 'Digital Wish Tree', path: '/mini-projects/DigitalWishTree.html', description: 'An interactive digital tree for sharing wishes.' },
+    { title: 'Boo', path: '/mini-projects/Boo.html', description: 'A playful interactive experience.' },
+    { title: 'Funny Black Holes', path: '/mini-projects/FunnyBlackHoles.html', description: 'A cosmic journey into gravitational anomalies.' },
+    { title: 'Happy Birthday Tuffy', path: '/mini-projects/HappyBirthdayTuffy.html', description: 'A celebratory personalized birthday page.' },
+    { title: 'Happy Birthday Yaari', path: '/mini-projects/HappyBirthdayYaari.html', description: 'A friendly and colorful birthday celebration.' },
+    { title: 'HBD Dosthi', path: '/mini-projects/HBD(Dosthi).html', description: 'A heartfelt birthday tribute to a friend.' },
+    { title: 'Happy Diwali', path: '/mini-projects/HappyDiwali.html', description: 'A festive celebration of the festival of lights.' },
+    { title: 'Happy New Year', path: '/mini-projects/HappyNewYear.html', description: 'A sparkling celebration of the new year.' },
+    { title: 'OpenCam', path: '/mini-projects/Open-cam.html', description: 'Experimental camera access and manipulation.' },
+    { title: 'Particles Touching', path: '/mini-projects/ParticlesTouching.html', description: 'An interactive particle physics simulation.' },
+    { title: 'PeekaBoo', path: '/mini-projects/PeekaBoo.html', description: 'A whimsical hide-and-seek interactive experience.' },
+    { title: 'Plants Panda', path: '/mini-projects/Plants-Panda.html', description: 'A cute interactive panda and plant simulation.' },
+    { title: 'Beating Heart', path: '/mini-projects/beating-heart.html', description: 'A rhythmic animation of a beating heart.' },
+    { title: 'Button Bear', path: '/mini-projects/button-bear.html', description: 'An adorable interactive bear button.' },
+    { title: 'Circle Lines', path: '/mini-projects/circleLines.html', description: 'A geometric exploration of lines and circles.' },
+    { title: 'Glowing Text', path: '/mini-projects/glowingText.html', description: 'An experiment in neon and glowing typography.' },
+    { title: 'Popping Bubbles', path: '/mini-projects/popingBubbles.html', description: 'A satisfying interactive bubble popping game.' },
+    { title: 'Space Globe', path: '/mini-projects/Space-globe.html', description: 'A 3D-like exploration of a celestial sphere.' },
+    { title: 'Thank You', path: '/mini-projects/thank-you.html', description: 'A minimal and elegant thank you page.' },
+    { title: 'Web', path: '/mini-projects/WEB.html', description: 'A structural web-based interactive experience.' },
+    { title: 'Vibrate', path: '/mini-projects/vibrate.html', description: 'Testing the Vibration API for mobile haptics.' },
+    { title: 'Wish Panda', path: '/mini-projects/wishPanda.html', description: 'A whimsical panda-themed wishing well.' },
+    { title: 'You Are', path: '/mini-projects/you-are.html', description: 'A poetic interactive experience.' },
   ];
-
-  // Set the default project to load first (sanitized!)
-  selectedUrl: SafeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.experiments[0].path);
-  activeProjectName: string = this.experiments[0].name;
-  selectedPath: string = this.experiments[0].path;
-  selectedExperiment = this.experiments[0];
-
-  // Function to change the iframe source when a button is clicked
-  selectExperiment(project: any) {
-    this.selectedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(project.path);
-    this.activeProjectName = project.name;
-    this.selectedPath = project.path;
-    this.selectedExperiment = project;
-  }
 }

@@ -1,8 +1,19 @@
 <div class="projects-container">
     <h2 class="section-title">Projects</h2>
 
+    <div class="filter-bar">
+        <mat-form-field appearance="outline">
+            <mat-label>Filter by Technology</mat-label>
+            <mat-select [value]="selectedTech()" (selectionChange)="selectedTech.set($event.value)">
+                <mat-option *ngFor="let tech of allTechs()" [value]="tech">
+                    {{ tech }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
     <div class="projects-grid">
-        <mat-card class="project-card" *ngFor="let project of projects">
+        <mat-card class="project-card" *ngFor="let project of filteredProjects(); let i = index" [attr.aria-label]="'Project: ' + project.title">
             <mat-card-header>
                 <mat-card-title class="project-title">{{ project.title }}</mat-card-title>
                 <mat-card-subtitle class="project-role">
@@ -23,7 +34,7 @@
             </mat-card-content>
 
             <mat-card-actions class="project-actions">
-                <button mat-button color="primary" (click)="openCaseStudy(project)">View Details</button>
+                <button mat-button color="primary" (click)="openCaseStudy(project)" [attr.aria-label]="'View details for ' + project.title">View Details</button>
             </mat-card-actions>
         </mat-card>
     </div>

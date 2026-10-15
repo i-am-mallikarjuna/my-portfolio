@@ -1,9 +1,20 @@
 <mat-toolbar color="primary" class="navbar">
     <a mat-button class="brand-logo" routerLink="/">Mallikarjuna</a>
     <span class="spacer"></span>
-    <button mat-icon-button (click)="toggleTheme()">
-        <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="themeMenu">
+        <mat-icon>{{
+            currentTheme === 'light' ? 'light_mode' :
+            currentTheme === 'dark' ? 'dark_mode' :
+            currentTheme === 'enterprise' ? 'business' :
+            currentTheme === 'developer' ? 'code' : 'layers'
+        }}</mat-icon>
     </button>
+    <mat-menu #themeMenu="matMenu">
+        <button mat-menu-item *ngFor="let theme of themes" (click)="setTheme(theme.id)">
+            <mat-icon>{{ theme.icon }}</mat-icon>
+            <span>{{ theme.label }}</span>
+        </button>
+    </mat-menu>
     <div class="desktop-menu">
         <a mat-button href="#home">Home</a>
         <a mat-button href="#skills">Skills</a>

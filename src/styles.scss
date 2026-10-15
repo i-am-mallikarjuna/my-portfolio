@@ -54,42 +54,75 @@ body {
   --brand-blue: #1976d2;
   --card-bg: #ffffff;
   --card-border: #e0e0e0;
-  /* Darker blue for light mode */
 }
 
-/* Dark Mode Overrides */
-.dark-theme {
+/* 1. Light Theme (Explicit) */
+.theme-light {
+  --bg-color: #f8f9fa;
+  --text-primary: #000000;
+  --text-secondary: #555555;
+  --brand-blue: #1976d2;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+}
+
+/* 2. Dark Theme (Explicit) */
+.theme-dark {
   --bg-color: #121212;
   --text-primary: #ffffff;
-  /* White text for dark mode */
   --text-secondary: #cccccc;
-  /* Light gray for subtitles */
   --brand-blue: #90caf9;
   --card-bg: #1e1e1e;
   --card-border: rgba(255, 255, 255, 0.05);
-  /* Lighter, brighter blue for dark mode visibility */
+}
 
-  background-color: var(--bg-color);
-  color: var(--text-primary);
+/* 3. Enterprise Modern (Professional, High-Contrast) */
+.theme-enterprise {
+  --bg-color: #f0f2f5;
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --brand-blue: #2b6cb0;
+  --card-bg: #ffffff;
+  --card-border: #cbd5e0;
+}
 
-  .mat-toolbar {
-    background-color: #1f1f1f !important;
-  }
+/* 4. Developer Dark (Deep Space, Neon Accents) */
+.theme-developer {
+  --bg-color: #0d1117;
+  --text-primary: #c9d1d9;
+  --text-secondary: #8b949e;
+  --brand-blue: #58a6ff;
+  --card-bg: #161b22;
+  --card-border: #30363d;
+}
 
-  .hero-card,
-  .skills-card, .project-card {
-    background-color: #1e1e1e !important;
+/* 5. Minimalist Swiss (Bold, Clean, High Contrast) */
+.theme-minimalist {
+  --bg-color: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --brand-blue: #000000;
+  --card-bg: #ffffff;
+  --card-border: #000000;
+}
+
+/* Global body applications */
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.hero-card, .skills-card, .project-card {
+    background-color: var(--card-bg) !important;
     color: var(--text-primary) !important;
-    /* Pro-Tip: Adding a subtle border makes cards look incredibly sharp in dark mode */
-      border: 1px solid rgba(255, 255, 255, 0.05);
-  }
+    border: 1px solid var(--card-border) !important;
+}
 
-    /* NEW: Force the Dialog pop-up to use the elevated dark gray background */
-    .mdc-dialog__surface {
-      background-color: #1e1e1e !important;
-      color: var(--text-primary) !important;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
+.mdc-dialog__surface {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--card-border) !important;
 }
 
 

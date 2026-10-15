@@ -1,29 +1,18 @@
-<section class="sandbox-section" id="sandbox">
-    <h2 class="section-title">Creative Experiments</h2>
-    <p class="section-subtitle">A collection of interactive UI/UX mini-projects</p>
+<div class="lab-container">
+    <h2 class="section-title">The Lab</h2>
+    <p class="lab-subtitle">A collection of experimental projects, curiosities, and creative coding snippets.</p>
 
-    <div class="sandbox-container">
-        <div class="controls-bar">
-            <div class="dropdown-wrapper">
-                <mat-form-field appearance="outline">
-                    <mat-select [value]="selectedExperiment" (selectionChange)="selectExperiment($event.value)">
-                        @for (exp of experiments; track exp.name) {
-                            <mat-option [value]="exp">{{ exp.name }}</mat-option>
-                        }
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div>
-
-        <div class="display-column">
-            <div class="mobile-device">
-                <a [href]="selectedPath" target="_blank" class="mobile-popout-icon" title="Open in new tab">
-                    <mat-icon>open_in_new</mat-icon>
-                </a>
-                <div class="mobile-screen">
-                    <iframe [src]="selectedUrl" title="Project Sandbox"></iframe>
-                </div>
-            </div>
-        </div>
+    <div class="lab-grid">
+        <mat-card class="lab-card" *ngFor="let project of projects">
+            <mat-card-header>
+                <mat-card-title>{{ project.title }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ project.description }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <a mat-button color="primary" [href]="project.path" target="_blank">Launch Experiment</a>
+            </mat-card-actions>
+        </mat-card>
     </div>
-</section>
+</div>
