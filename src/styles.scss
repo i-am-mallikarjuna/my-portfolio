@@ -106,11 +106,71 @@ body {
   --card-border: #000000;
 }
 
+/* 6. Iron Man (Stark HUD - Metallic Crimson & Arc Reactor Cyan) */
+.theme-ironman {
+  --bg-color: #1a0a0a;
+  --text-primary: #ffcccc;
+  --text-secondary: #ff9999;
+  --brand-blue: #00ffff; /* Arc Reactor Cyan */
+  --card-bg: #2d1010;
+  --card-border: #b22222; /* Metallic Crimson */
+}
+
+/* 7. Batman (The Dark Knight - Obsidian & Bat-Signal Yellow) */
+.theme-batman {
+  --bg-color: #050505;
+  --text-primary: #e0e0e0;
+  --text-secondary: #888888;
+  --brand-blue: #ffd700; /* Bat-signal Yellow */
+  --card-bg: #0a0a0a;
+  --card-border: #1a1a1a;
+}
+
 /* Global body applications */
 body {
   background-color: var(--bg-color) !important;
   color: var(--text-primary) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Background Watermarks for Special Themes */
+body.theme-batman::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('/assets/batman-logo.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.1; /* Subtle watermark effect */
+    z-index: -1;
+    pointer-events: none;
+}
+
+body.theme-ironman::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('/assets/ironman-arc.png') no-repeat center center;
+    background-size: contain;
+    opacity: 0.1; /* Subtle watermark effect */
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Fix for Angular Material Form Field components across all themes */
+.mat-mdc-form-field {
+    --mdc-outlined-text-field-label-text-color: var(--text-secondary) !important;
+    --mdc-outlined-text-field-focus-label-text-color: var(--brand-blue) !important;
+    --mdc-outlined-text-field-outline-color: var(--card-border) !important;
+    --mdc-outlined-text-field-focus-outline-color: var(--brand-blue) !important;
+    --mdc-outlined-text-field-input-text-color: var(--text-primary) !important;
+}
+
+/* Fix for mat-select trigger text and arrow */
+.mat-mdc-select-trigger {
+    color: var(--text-primary) !important;
+}
+.mat-mdc-select-arrow {
+    color: var(--text-secondary) !important;
 }
 
 .hero-card, .skills-card, .project-card {

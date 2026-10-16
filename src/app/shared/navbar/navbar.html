@@ -1,8 +1,14 @@
-<mat-toolbar color="primary" class="navbar">
+<mat-toolbar class="navbar">
     <a mat-button class="brand-logo" routerLink="/">Mallikarjuna</a>
     <span class="spacer"></span>
     <button mat-icon-button [matMenuTriggerFor]="themeMenu">
-        <mat-icon>{{
+        <ng-container *ngIf="currentTheme === 'ironman'">
+            <img src="ironman-arc.png" class="theme-icon-img" alt="Iron Man">
+        </ng-container>
+        <ng-container *ngIf="currentTheme === 'batman'">
+            <img src="batman-logo.png" class="theme-icon-img" alt="Batman">
+        </ng-container>
+        <mat-icon *ngIf="currentTheme !== 'ironman' && currentTheme !== 'batman'">{{
             currentTheme === 'light' ? 'light_mode' :
             currentTheme === 'dark' ? 'dark_mode' :
             currentTheme === 'enterprise' ? 'business' :
@@ -11,8 +17,16 @@
     </button>
     <mat-menu #themeMenu="matMenu">
         <button mat-menu-item *ngFor="let theme of themes" (click)="setTheme(theme.id)">
-            <mat-icon>{{ theme.icon }}</mat-icon>
-            <span>{{ theme.label }}</span>
+            <div class="theme-item-content">
+                <ng-container *ngIf="theme.id === 'ironman'">
+                    <img src="ironman-arc.png" class="theme-icon-img menu-icon" alt="Iron Man">
+                </ng-container>
+                <ng-container *ngIf="theme.id === 'batman'">
+                    <img src="batman-logo.png" class="theme-icon-img menu-icon" alt="Batman">
+                </ng-container>
+                <mat-icon *ngIf="theme.id !== 'ironman' && theme.id !== 'batman'">{{ theme.icon }}</mat-icon>
+                <span class="theme-label">{{ theme.label }}</span>
+            </div>
         </button>
     </mat-menu>
     <div class="desktop-menu">
@@ -20,9 +34,8 @@
         <a mat-button href="#skills">Skills</a>
         <a mat-button href="#projects">Projects</a>
         <a mat-button routerLink="/custom-page">Custom page</a>
-        <!-- <a mat-button routerLink="/add-content">Add</a> -->
         <a mat-button routerLink="/contact">Contact</a>
-        <a mat-button routerLink="/mini-projects" >Mini Projects</a>
+        <a mat-button routerLink="/mini-projects">Mini Projects</a>
     </div>
     <button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu">
         <mat-icon>menu</mat-icon>
@@ -32,9 +45,7 @@
         <a mat-menu-item href="#skills">Skills</a>
         <a mat-menu-item href="#projects">Projects</a>
         <a mat-menu-item routerLink="/custom-page">Custom Page</a>
-        <!-- <a mat-menu-item routerLink="/add-content">Add</a> -->
         <a mat-menu-item routerLink="/contact">Contact</a>
         <a mat-menu-item routerLink="/mini-projects" class="nav-item">Mini Projects</a>
     </mat-menu>
-
 </mat-toolbar>

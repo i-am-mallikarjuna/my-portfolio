@@ -21,6 +21,8 @@ export class Navbar implements OnInit {
     { id: 'enterprise', label: 'Enterprise Modern', icon: 'business' },
     { id: 'developer', label: 'Developer Dark', icon: 'code' },
     { id: 'minimalist', label: 'Minimalist Swiss', icon: 'layers' },
+    { id: 'ironman', label: 'Iron Man', icon: 'rocket_launch' },
+    { id: 'batman', label: 'Batman', icon: 'nightshade' },
   ];
 
   ngOnInit() {

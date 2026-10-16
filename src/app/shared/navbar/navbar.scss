@@ -18,13 +18,9 @@
 
 /* 3. Responsive Rules for Mobile View */
 @media (max-width: 768px) {
-
-    /* Hide the standard row of links */
     .desktop-menu {
         display: none;
     }
-
-    /* Show the hamburger menu icon */
     .mobile-menu-btn {
         display: block !important;
     }
@@ -34,6 +30,9 @@
     position: sticky;
     top: 0;
     z-index: 1000;
+    background-color: var(--bg-color) !important;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid var(--card-border);
 
     span,
     a,
@@ -42,21 +41,67 @@
         color: var(--text-primary) !important;
     }
 
+    .theme-icon-img {
+        width: 24px !important;
+        height: 24px !important;
+        object-fit: contain !important;
+        border-radius: 50%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .menu-icon {
+        margin-right: 12px !important;
+        width: 24px !important;
+        height: 24px !important;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .theme-label {
+        margin-left: 8px;
+        color: var(--text-primary) !important;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
     /* NEW: Specific styling for your name */
     .brand-logo {
         font-size: 1.5rem;
-        /* Makes it slightly larger than the links */
         font-weight: 800;
-        /* Extra bold for a strong presence */
         letter-spacing: 1px;
-        /* Adds a modern, airy feel */
         color: var(--brand-blue) !important;
-        /* Overrides the white/black text to use your theme's blue */
         text-transform: capitalize;
-        /* Gives it a sleek, corporate logo vibe */
         cursor: pointer;
-        /* Makes it feel interactive */
         margin-right: 2rem;
-        /* Gives it some breathing room from the next elements */
     }
+}
+
+/* Fix for the menu items to ensure strict horizontal and vertical alignment */
+.mat-mdc-menu-item {
+    display: flex !important;
+    align-items: center !important;
+    height: 48px !important;
+}
+
+.theme-item-content {
+    display: flex !important;
+    align-items: center !important;
+    width: 100%;
+    height: 100%;
+}
+
+.theme-item-content img,
+.theme-item-content mat-icon {
+    width: 24px !important;
+    height: 24px !important;
+    margin-right: 12px !important; /* Match the margin-right of other icons */
+    object-fit: contain !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+}
+
+.theme-item-content .theme-label {
+    margin: 0 !important;
+    line-height: 1 !important;
 }

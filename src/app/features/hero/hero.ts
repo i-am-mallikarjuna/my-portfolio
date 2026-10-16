@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-hero',
-  imports: [MatCardModule, MatButtonModule, RouterLink],
+  standalone: true,
+  imports: [MatCardModule, MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './hero.html',
   styleUrl: './hero.scss',
 })
@@ -20,4 +22,3 @@ export class Hero {
     return Math.round(diffInYears + 1.3);
   }
 }
-
