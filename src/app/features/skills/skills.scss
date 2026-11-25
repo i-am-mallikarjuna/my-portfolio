@@ -9,6 +9,10 @@
     gap: 1.5rem;
 }
 
+.skill-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+}
+
 .skill-card {
     position: relative;
     padding: 2rem;

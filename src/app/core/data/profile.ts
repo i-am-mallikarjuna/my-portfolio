@@ -27,12 +27,12 @@ export const PROJECTS: Project[] = [
     title: 'Bedrock',
     role: '.NET Developer',
     company: 'FS Technosol LLP',
-    description: 'Maintain and extend an enterprise desktop platform, from WPF screens and a CRM dealer module to the T-SQL behind them, and help run an AI-assisted development, code-review and QA workflow.',
-    techStack: ['.NET', 'WPF', 'MSSQL', 'T-SQL', 'MVC', 'MVVM', 'XAML', 'Telerik', 'Signnow', 'Web Services', 'PowerShell', 'Claude Code', 'GitHub Copilot'],
+    description: 'Maintain and extend an enterprise financial-services platform: WPF desktop screens, a CRM dealer module, a layer of about 60 WCF and REST services on IIS, and the T-SQL behind them. Also help run an AI-assisted development, code-review and QA workflow.',
+    techStack: ['C#', '.NET Framework 4.8', 'WPF', 'ASP.NET', 'WCF', 'REST / JSON', 'IIS', 'MSSQL', 'T-SQL', 'MVC', 'MVVM', 'XAML', 'Telerik', 'SignNow', 'Twilio', 'SendGrid', 'PowerShell', 'Claude Code', 'GitHub Copilot'],
     caseStudy: {
-      challenge: 'A large, long-lived desktop application needed new features and a more responsive UI, while a high volume of tickets had to move through development, review and QA quickly without lowering quality.',
-      solution: 'Built new WPF screens following MVC and MVVM patterns, wired to the data layer through services, plus a CRM dealer module backed by dedicated schema objects, with stored procedures, functions and views written to consistent SQL standards and change logs. Put AI coding agents to work in a structured workflow covering AI-assisted development, automated code review against team standards, and AI-driven QA, with PowerShell automation for ticket routing, history notes and sandbox database promotion.',
-      outcome: 'Delivered milestones on time with ~30% lower data-retrieval latency, faster ticket turnaround, and more consistent reviews thanks to codified standards and automated checks before manager review.',
+      challenge: 'A large, long-lived platform needed new features and a more responsive UI, plus reliable integration with dozens of external partners. Meanwhile, a high volume of tickets had to move through development, review and QA quickly without lowering quality.',
+      solution: 'Built new WPF screens following MVC and MVVM patterns and a CRM dealer module backed by dedicated schema objects. Maintained a service layer of about 60 ASP.NET/WCF projects on IIS, with REST/JSON calls via Newtonsoft and scheduled console jobs. It integrates credit bureaus, dealer credit-application feeds, vehicle valuation, payments, SMS/voice messaging (Twilio), email (SendGrid), shipping, e-signature (SignNow), document generation (Telerik) and GenAI providers. Wrote stored procedures, functions and views to consistent SQL standards and change logs. Put AI coding agents to work in a structured workflow covering AI-assisted development, automated code review against team standards, and AI-driven QA, with PowerShell automation for ticket routing, history notes and sandbox database promotion.',
+      outcome: 'Delivered milestones on time with ~30% lower data-retrieval latency, stable third-party integrations, faster ticket turnaround, and more consistent reviews thanks to codified standards and automated checks before manager review.',
     },
   },
   {
@@ -84,7 +84,13 @@ export const SKILL_GROUPS = [
     name: 'Frameworks',
     icon: 'layers',
     blurb: 'Building robust back-ends and modern front-ends.',
-    skills: ['ASP.NET', 'ASP.NET MVC', '.NET Core', 'Web Services', 'ADO .NET', 'WPF / MVVM', 'Angular', 'Angular Material', 'Entity Framework'],
+    skills: ['ASP.NET', 'ASP.NET MVC', '.NET Framework 4.8', '.NET Core', 'ADO .NET', 'WPF / MVVM', 'Angular', 'Angular Material', 'Entity Framework'],
+  },
+  {
+    name: 'Services & Integrations',
+    icon: 'hub',
+    blurb: 'Connecting systems reliably through services and partner APIs.',
+    skills: ['WCF', 'REST / JSON APIs', 'Web Services', 'Newtonsoft.Json', 'IIS', 'Scheduled Jobs', 'Twilio', 'SendGrid', 'SignNow', 'Telerik Reporting', '3rd-party API Integration'],
   },
   {
     name: 'Tools',
