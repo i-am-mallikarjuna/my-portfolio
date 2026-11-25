@@ -1,15 +1,31 @@
-<mat-card class="skills-card">
-    <mat-card-header>
-        <mat-card-title>Technical Expertise</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <div *ngFor="let group of skillGroups" class="skill-group">
-            <h3>{{ group.name }}</h3>
-            <mat-chip-set>
-                <mat-chip *ngFor="let skill of group.skills" class="skill-chip">
-                    {{ skill }}
-                </mat-chip>
-            </mat-chip-set>
-        </div>
-    </mat-card-content>
-</mat-card>
+<header class="section-header" appReveal>
+  <span class="eyebrow">01 — Skills</span>
+  <h2>Technical <span class="gradient-text">Expertise</span></h2>
+  <p>The languages, frameworks and tools I use to ship reliable, end-to-end solutions.</p>
+</header>
+
+<div class="skills-grid">
+  @for (group of skillGroups; track group.name; let i = $index) {
+    <article class="skill-card glass-card" appReveal [revealDelay]="i * 120">
+      <div class="skill-icon"><mat-icon>{{ group.icon }}</mat-icon></div>
+      <h3>{{ group.name }}</h3>
+      <p>{{ group.blurb }}</p>
+      <div class="tags">
+        @for (skill of group.skills; track skill) {
+          <span class="tag">{{ skill }}</span>
+        }
+      </div>
+    </article>
+  }
+</div>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    @for (skill of allSkills; track $index) {
+      <span>{{ skill }}</span>
+    }
+    @for (skill of allSkills; track $index) {
+      <span>{{ skill }}</span>
+    }
+  </div>
+</div>

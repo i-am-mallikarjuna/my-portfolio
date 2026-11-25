@@ -1,41 +1,45 @@
-<div class="projects-container">
-    <h2 class="section-title">Projects</h2>
+<header class="section-header" appReveal>
+  <span class="eyebrow">02 — Projects</span>
+  <h2>Featured <span class="gradient-text">Work</span></h2>
+  <p>Enterprise systems I've designed, built and shipped — click any project for the full case study.</p>
+</header>
 
-    <div class="filter-bar">
-        <mat-form-field appearance="outline">
-            <mat-label>Filter by Technology</mat-label>
-            <mat-select [value]="selectedTech()" (selectionChange)="selectedTech.set($event.value)">
-                <mat-option *ngFor="let tech of allTechs()" [value]="tech">
-                    {{ tech }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+<div class="filter-bar" role="toolbar" aria-label="Filter projects by technology" appReveal>
+  @for (tech of allTechs(); track tech) {
+    <button
+      type="button"
+      class="filter-pill"
+      [class.active]="selectedTech() === tech"
+      [attr.aria-pressed]="selectedTech() === tech"
+      (click)="selectedTech.set(tech)">
+      {{ tech }}
+    </button>
+  }
+</div>
 
-    <div class="projects-grid">
-        <mat-card class="project-card" *ngFor="let project of filteredProjects(); let i = index" [attr.aria-label]="'Project: ' + project.title">
-            <mat-card-header>
-                <mat-card-title class="project-title">{{ project.title }}</mat-card-title>
-                <mat-card-subtitle class="project-role">
-                    <strong>{{ project.role }}</strong> | {{ project.company }}
-                </mat-card-subtitle>
-            </mat-card-header>
+<div class="projects-grid">
+  @for (project of filteredProjects(); track project.title; let i = $index) {
+    <article class="project-card glass-card" appReveal [revealDelay]="i * 100" [attr.aria-label]="'Project: ' + project.title">
+      <div class="card-top">
+        <span class="index">{{ (i + 1).toString().padStart(2, '0') }}</span>
+        <span class="company"><mat-icon>business_center</mat-icon>{{ project.company }}</span>
+      </div>
 
-            <mat-card-content class="project-content">
-                <p>{{ project.description }}</p>
+      <h3 class="project-title">{{ project.title }}</h3>
+      <p class="project-role">{{ project.role }}</p>
+      <p class="project-desc">{{ project.description }}</p>
 
-                <div class="tech-stack">
-                    <mat-chip-set>
-                        <mat-chip *ngFor="let tech of project.techStack" class="tech-chip">
-                            {{ tech }}
-                        </mat-chip>
-                    </mat-chip-set>
-                </div>
-            </mat-card-content>
+      <div class="tags">
+        @for (tech of project.techStack; track tech) {
+          <span class="tag">{{ tech }}</span>
+        }
+      </div>
 
-            <mat-card-actions class="project-actions">
-                <button mat-button color="primary" (click)="openCaseStudy(project)" [attr.aria-label]="'View details for ' + project.title">View Details</button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+      <button type="button" class="details-btn" (click)="openCaseStudy(project)" [attr.aria-label]="'View details for ' + project.title">
+        View case study <mat-icon>arrow_outward</mat-icon>
+      </button>
+    </article>
+  } @empty {
+    <p class="empty">No projects match this technology yet.</p>
+  }
 </div>

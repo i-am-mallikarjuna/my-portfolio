@@ -1,5 +1,13 @@
-<app-navbar></app-navbar>
-<div class="main-container">
-  <router-outlet></router-outlet>
-  <!--  -->
+<div class="backdrop" aria-hidden="true">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="grid-overlay"></div>
+  <img class="watermark watermark-batman" src="batman-logo.png" alt="" />
+  <img class="watermark watermark-ironman" src="ironman-arc.png" alt="" />
 </div>
+
+<app-navbar></app-navbar>
+<main class="main-container">
+  <router-outlet></router-outlet>
+</main>
+<app-footer></app-footer>

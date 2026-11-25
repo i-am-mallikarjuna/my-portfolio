@@ -1,51 +1,54 @@
-<mat-toolbar class="navbar">
-    <a mat-button class="brand-logo" routerLink="/">Mallikarjuna</a>
-    <span class="spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="themeMenu">
-        <ng-container *ngIf="currentTheme === 'ironman'">
-            <img src="ironman-arc.png" class="theme-icon-img" alt="Iron Man">
-        </ng-container>
-        <ng-container *ngIf="currentTheme === 'batman'">
-            <img src="batman-logo.png" class="theme-icon-img" alt="Batman">
-        </ng-container>
-        <mat-icon *ngIf="currentTheme !== 'ironman' && currentTheme !== 'batman'">{{
-            currentTheme === 'light' ? 'light_mode' :
-            currentTheme === 'dark' ? 'dark_mode' :
-            currentTheme === 'enterprise' ? 'business' :
-            currentTheme === 'developer' ? 'code' : 'layers'
-        }}</mat-icon>
-    </button>
-    <mat-menu #themeMenu="matMenu">
-        <button mat-menu-item *ngFor="let theme of themes" (click)="setTheme(theme.id)">
-            <div class="theme-item-content">
-                <ng-container *ngIf="theme.id === 'ironman'">
-                    <img src="ironman-arc.png" class="theme-icon-img menu-icon" alt="Iron Man">
-                </ng-container>
-                <ng-container *ngIf="theme.id === 'batman'">
-                    <img src="batman-logo.png" class="theme-icon-img menu-icon" alt="Batman">
-                </ng-container>
-                <mat-icon *ngIf="theme.id !== 'ironman' && theme.id !== 'batman'">{{ theme.icon }}</mat-icon>
-                <span class="theme-label">{{ theme.label }}</span>
-            </div>
-        </button>
-    </mat-menu>
-    <div class="desktop-menu">
-        <a mat-button href="#home">Home</a>
-        <a mat-button href="#skills">Skills</a>
-        <a mat-button href="#projects">Projects</a>
-        <a mat-button routerLink="/custom-page">Custom page</a>
-        <a mat-button routerLink="/contact">Contact</a>
-        <a mat-button routerLink="/mini-projects">Mini Projects</a>
-    </div>
-    <button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu">
+<header class="navbar">
+  <div class="nav-inner">
+    <a class="brand" routerLink="/" aria-label="Mallikarjuna — home">
+      <span class="brand-mark">M</span>
+      <span class="brand-name">Mallikarjuna</span>
+    </a>
+
+    <nav class="desktop-menu" aria-label="Primary">
+      @for (link of sectionLinks; track link.href) {
+        <a class="nav-link" [href]="link.href">{{ link.label }}</a>
+      }
+      @for (link of routeLinks; track link.path) {
+        <a class="nav-link" [routerLink]="link.path" routerLinkActive="active">{{ link.label }}</a>
+      }
+    </nav>
+
+    <div class="nav-actions">
+      <button mat-icon-button class="theme-btn" [matMenuTriggerFor]="themeMenu" aria-label="Change theme" title="Change theme">
+        @if (currentTheme().image; as img) {
+          <img [src]="img" class="theme-icon-img" [alt]="currentTheme().label" />
+        } @else {
+          <mat-icon>{{ currentTheme().icon }}</mat-icon>
+        }
+      </button>
+
+      <button mat-icon-button class="mobile-menu-btn" [matMenuTriggerFor]="mobileMenu" aria-label="Open menu">
         <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="progress" [style.width.%]="scrollProgress()"></div>
+</header>
+
+<mat-menu #themeMenu="matMenu" xPosition="before">
+  @for (theme of themes; track theme.id) {
+    <button mat-menu-item (click)="setTheme(theme.id)" [class.is-active]="theme.id === currentThemeId()">
+      @if (theme.image) {
+        <img [src]="theme.image" class="menu-theme-img" [alt]="theme.label" />
+      } @else {
+        <mat-icon>{{ theme.icon }}</mat-icon>
+      }
+      <span>{{ theme.label }}</span>
     </button>
-    <mat-menu #mobileMenu="matMenu">
-        <a mat-menu-item href="#home">Home</a>
-        <a mat-menu-item href="#skills">Skills</a>
-        <a mat-menu-item href="#projects">Projects</a>
-        <a mat-menu-item routerLink="/custom-page">Custom Page</a>
-        <a mat-menu-item routerLink="/contact">Contact</a>
-        <a mat-menu-item routerLink="/mini-projects" class="nav-item">Mini Projects</a>
-    </mat-menu>
-</mat-toolbar>
+  }
+</mat-menu>
+
+<mat-menu #mobileMenu="matMenu" xPosition="before">
+  @for (link of sectionLinks; track link.href) {
+    <a mat-menu-item [href]="link.href">{{ link.label }}</a>
+  }
+  @for (link of routeLinks; track link.path) {
+    <a mat-menu-item [routerLink]="link.path">{{ link.label }}</a>
+  }
+</mat-menu>

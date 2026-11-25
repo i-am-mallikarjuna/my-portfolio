@@ -1,83 +1,150 @@
-.projects-container {
-    padding: 0 0;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--brand-blue);
-    margin-bottom: 2rem;
+:host {
+    display: block;
+    padding: 4rem 0 2rem;
 }
 
 .filter-bar {
-    margin-bottom: 3rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 0.5rem;
+    margin: -1rem auto 2.5rem;
+    max-width: 900px;
+}
+
+.filter-pill {
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--card-border);
+    background: var(--glass-bg);
+    color: var(--text-secondary);
+    font: 500 0.85rem 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        color: var(--text-primary);
+        border-color: var(--brand-blue);
+    }
+
+    &.active {
+        background: var(--gradient);
+        border-color: transparent;
+        color: var(--on-brand);
+        box-shadow: var(--glow);
+    }
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    padding: 0 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr));
+    gap: 1.5rem;
 }
 
 .project-card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    color: var(--text-primary) !important;
-    box-shadow: none !important;
-    border-radius: 12px;
+    padding: 2rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
-/* 1. SWAPPED TO DYNAMIC VARIABLES HERE */
-    background-color: var(--card-bg) !important;
-    border: 1px solid var(--card-border) !important;
-
-    transition: transform 0.3s ease, box-shadow 0.3s 
-    ease;
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0 0 auto;
+        height: 3px;
+        background: var(--gradient);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+    }
 
     &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transform: translateY(-6px);
+        border-color: color-mix(in srgb, var(--brand-blue) 50%, transparent);
+        box-shadow: var(--glow);
+
+        &::before { transform: scaleX(1); }
+        .details-btn mat-icon { transform: translate(3px, -3px); }
     }
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.index {
+    font: 700 2.5rem/1 var(--font-display);
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--brand-blue) 70%, transparent);
+}
+
+.company {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+
+    mat-icon { font-size: 16px; width: 16px; height: 16px; }
 }
 
 .project-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
+    margin: 0;
+    color: var(--text-primary);
 }
 
 .project-role {
+    margin: 0.35rem 0 1rem;
+    font-weight: 600;
     color: var(--brand-blue);
-    margin-bottom: 1rem;
 }
 
-.project-content {
+.project-desc {
     flex-grow: 1;
-    /* Pushes the actions button to the bottom */
-    p {
-        line-height: 1.6;
-        color: var(--text-secondary);
-        margin-bottom: 1.5rem;
+    margin: 0 0 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.details-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--brand-blue);
+    font: 600 0.95rem 'Inter', sans-serif;
+    cursor: pointer;
+
+    mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+        transition: transform 0.25s ease;
     }
 }
 
-.tech-chip {
-    /* Fix visibility in dark themes using MDC variables */
-    --mdc-chip-label-text-color: var(--text-primary) !important;
-    --mdc-chip-container-color: var(--card-bg) !important;
-    --mdc-chip-outline-color: var(--card-border) !important;
-
-    background-color: var(--card-bg) !important;
-    color: var(--text-primary) !important;
-    border: 1px solid var(--card-border) !important;
-    font-weight: 500;
+.empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-secondary);
 }
 
-.project-actions {
-    padding: 0.5rem;
-    margin: 1%;
-    border-top: 1px solid rgba(128, 128, 128, 0.2);
+@media (max-width: 600px) {
+    .project-card { padding: 1.5rem; }
 }

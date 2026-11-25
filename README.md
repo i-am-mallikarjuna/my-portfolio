@@ -1,5 +1,14 @@
 # MyPortfolioUI
 
+Personal portfolio of Mallikarjuna — .NET Full Stack Developer — built with Angular 21 and Angular Material.
+
+## Features
+
+- Seven switchable themes (Light, Dark, Enterprise, Developer, Minimalist, Iron Man, Batman) driven by CSS variables in `src/styles.scss`
+- Animated hero, skills, featured projects with case-study dialogs, and a searchable "Lab" of mini projects
+- Scroll-reveal animations (`src/app/shared/reveal`) that respect `prefers-reduced-motion`
+- Profile, project and skill content lives in `src/app/core/data/profile.ts`
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.10.
 
 ## Development server

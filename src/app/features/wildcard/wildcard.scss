@@ -4,8 +4,22 @@
     align-items: center;
     justify-content: center;
     min-height: 50vh;
+    max-width: 640px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 3rem auto;
     text-align: center;
-    padding: 1rem; // Ensures content doesn't touch edges on mobile
+    padding: 3rem 1.5rem;
+
+    h1 {
+        font-size: clamp(1.8rem, 5vw, 2.75rem);
+        margin: 0 0 0.5rem;
+    }
+
+    p {
+        color: var(--text-secondary);
+        margin: 0 0 2rem;
+    }
 
     .gear-container {
         display: flex;

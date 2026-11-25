@@ -1,14 +1,88 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 .main-container {
-    max-width: 95%;
+    width: 100%;
+    max-width: 1200px;
+    box-sizing: border-box;
     margin: 0 auto;
-    padding: 1rem;
-    /* Reduced from 2rem for better mobile fit */
+    padding: 88px 1rem 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    flex: 1;
 
     @media (min-width: 768px) {
-        padding: 2rem;
-        /* Restore larger padding for tablets and desktops */
+        padding: 96px 2rem 3rem;
+    }
+}
+
+/* Ambient animated background that follows the active theme */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.blob {
+    position: absolute;
+    width: 46vmax;
+    height: 46vmax;
+    border-radius: 50%;
+    opacity: 0.28;
+    will-change: transform;
+    animation: drift 22s ease-in-out infinite alternate;
+}
+
+.blob-1 {
+    top: -18vmax;
+    left: -12vmax;
+    background: radial-gradient(circle, var(--brand-blue), transparent 65%);
+}
+
+.blob-2 {
+    bottom: -20vmax;
+    right: -14vmax;
+    background: radial-gradient(circle, var(--accent), transparent 65%);
+    animation-delay: -11s;
+}
+
+.grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(color-mix(in srgb, var(--text-primary) 5%, transparent) 1px, transparent 1px),
+        linear-gradient(90deg, color-mix(in srgb, var(--text-primary) 5%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at 50% 0%, #000 20%, transparent 70%);
+}
+
+.watermark {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(70vw, 640px);
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+}
+
+:host-context(.theme-batman) .watermark-batman,
+:host-context(.theme-ironman) .watermark-ironman {
+    display: block;
+}
+
+:host-context(.theme-minimalist) .blob {
+    display: none;
+}
+
+@keyframes drift {
+    to {
+        transform: translate(8vmax, 6vmax) scale(1.15);
     }
 }

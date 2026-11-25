@@ -1,136 +1,104 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatDialogModule, MatDialog } from '@angular/material/dialog';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { PROJECTS, Project } from '../../core/data/profile';
+import { Reveal } from '../../shared/reveal/reveal';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatChipsModule, MatDialogModule, MatSelectModule, MatFormFieldModule, MatInputModule],
+  imports: [MatButtonModule, MatIconModule, Reveal],
   templateUrl: './projects.html',
   styleUrl: './projects.scss',
 })
 export class Projects {
-  projects = [
-    {
-      title: 'Bedrock',
-      role: '.NET Developer',
-      company: 'FS Technosol LLP',
-      description: 'Maintained and enhanced desktop application components, focusing on UI responsiveness and highly efficient database interactions.',
-      techStack: ['.NET', 'WPF', 'MSSQL', 'MVC', 'MVVM','XAML', 'Telerik', 'Signnow'],
-      caseStudy: {
-        challenge: 'The application required a more responsive user interface and highly optimized data retrieval to handle complex desktop operations efficiently.',
-        solution: 'Implemented new UI screens using WPF. Managed heavy MSSQL database operations by creating custom stored procedures, functions, and direct SQL calls for optimized CRUD operations.',
-        outcome: 'Successfully delivered all project milestones on time, reducing data retrieval latency by ~30% and significantly improving the end-user experience.'
-      }
-    },
-    {
-      title: 'Vasa Web Ecosystem',
-      role: '.NET Developer',
-      company: 'FS Technosol LLP',
-      description: 'Developed and supported a suite of 5 interconnected enterprise websites. Managed complex data integration, API handling, and optimized MSSQL stored procedures for efficient CRUD operations and high scalability.',
-      techStack: ['C#', '.NET', 'MSSQL', 'MVC'],
-      caseStudy: {
-        challenge: 'The business required a highly scalable and performant back-end architecture capable of supporting and integrating data across an ecosystem of 5 distinct websites without latency issues.',
-        solution: 'Engineered the core back-end logic using C# and .NET. Designed and optimized MSSQL database interactions using custom stored procedures and functions to handle heavy CRUD operations. Seamlessly managed cross-site API integrations and performed rigorous debugging.',
-        outcome: 'Increased overall system reliability and scalability, ensuring seamless communication across 5 platforms and improving API response times by ~25%.'
-      },
-    },
-    {
-      title: 'Traveler Ticket Booking',
-      role: '.NET Full Stack Developer',
-      company: 'Rudrani Technologies',
-      description: 'Engineered a comprehensive booking platform for flights, buses, and hotels. Designed the core API architecture in .NET Core, implemented JWT authentication for secure access, and seamlessly integrated 3rd-party real-time availability APIs.',
-      techStack: ['.NET Core', 'MSSQL', '3rd party API Integration'],
-      caseStudy: {
-        challenge: 'The client needed a unified platform that could query multiple third-party travel APIs in real-time without causing significant latency for the end user.',
-        solution: 'Built robust asynchronous .NET Core API calls and implemented JWT authentication for secure access. Coordinated sprint planning to ensure the UI successfully consumed the complex data structures.',
-        outcome: 'Successfully delivered real-time pricing and availability features, reducing booking friction and increasing user conversion rates.'
-      }
-    },
-    {
-      title: 'Agxcel Application',
-      role: 'Associate Software Engineer',
-      company: 'Nexgile Technologies',
-      description: 'An agricultural web application that allows users to seamlessly control field machinery and manage fertilizer application via an Injection Unit.',
-      techStack: ['Angular', '.NET Core', 'MSSQL', 'Jira', 'Git'],
-      caseStudy: {
-        challenge: 'The project required a highly intuitive web interface that could reliably communicate with and control physical agricultural hardware (Injection Units) in the field without overwhelming the end-user.',
-        solution: 'Developed dynamic, responsive UI screens using Angular and collaborated with senior developers to design and integrate robust .NET Core APIs. Actively participated in Agile sprint meetings to continuously refine the interface based on usability feedback.',
-        outcome: 'Delivered a seamless, bug-free application allowing remote management of field hardware with zero reported critical production failures during the initial rollout.'
-      }
-    }
-  ];
+  readonly projects = PROJECTS;
+  readonly selectedTech = signal<string>('All');
 
-  selectedTech = signal<string>('All');
-
-  filteredProjects = computed(() => {
-    if (this.selectedTech() === 'All') {
+  readonly filteredProjects = computed(() => {
+    const tech = this.selectedTech().toLowerCase();
+    if (tech === 'all') {
       return this.projects;
     }
-    return this.projects.filter(p => p.techStack.some(t => t.toLowerCase().includes(this.selectedTech().toLowerCase())));
+    return this.projects.filter((p) => p.techStack.some((t) => t.toLowerCase().includes(tech)));
   });
 
-  allTechs = computed(() => {
+  readonly allTechs = computed(() => {
     const techs = new Set<string>();
-    this.projects.forEach(p => p.techStack.forEach(t => techs.add(t)));
-    return ['All', ...Array.from(techs)];
+    this.projects.forEach((p) => p.techStack.forEach((t) => techs.add(t)));
+    return ['All', ...techs];
   });
 
-  readonly dialog = inject(MatDialog);
+  private readonly dialog = inject(MatDialog);
 
-  openCaseStudy(projectData: any) {
+  openCaseStudy(project: Project) {
     this.dialog.open(ProjectDialogComponent, {
-      data: projectData,
-      width: '600px',
-      maxWidth: '90vw'
+      data: project,
+      width: '640px',
+      maxWidth: '92vw',
+      autoFocus: false,
     });
   }
 }
 
-import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose } from '@angular/material/dialog';
-
 @Component({
   selector: 'app-project-dialog',
   standalone: true,
-  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, CommonModule],
+  imports: [MatDialogTitle, MatDialogContent, MatDialogActions, MatDialogClose, MatButtonModule, MatIconModule],
   template: `
-    <h2 mat-dialog-title class="dialog-title">{{ data.title }} Details</h2>
+    <div class="dialog-head" mat-dialog-title>
+      <span class="eyebrow">{{ data.company }} · {{ data.role }}</span>
+      <h2>{{ data.title }}</h2>
+    </div>
     <mat-dialog-content class="dialog-content">
-
-      <div class="case-section">
-        <h3>The Challenge</h3>
-        <p>{{ data.caseStudy.challenge }}</p>
+      @for (section of sections; track section.key) {
+        <div class="case-section">
+          <div class="case-icon"><mat-icon>{{ section.icon }}</mat-icon></div>
+          <div>
+            <h3>{{ section.title }}</h3>
+            <p>{{ data.caseStudy[section.key] }}</p>
+          </div>
+        </div>
+      }
+      <div class="tags">
+        @for (tech of data.techStack; track tech) {
+          <span class="tag">{{ tech }}</span>
+        }
       </div>
-
-      <div class="case-section">
-        <h3>The Solution & Architecture</h3>
-        <p>{{ data.caseStudy.solution }}</p>
-      </div>
-
-      <div class="case-section">
-        <h3>The Outcome</h3>
-        <p>{{ data.caseStudy.outcome }}</p>
-      </div>
-
     </mat-dialog-content>
-    <mat-dialog-actions align="center">
-      <button mat-button mat-dialog-close>Close</button>
+    <mat-dialog-actions align="end">
+      <button class="btn btn-primary" mat-dialog-close>Close</button>
     </mat-dialog-actions>
   `,
   styles: [`
-    .dialog-title { color: var(--brand-blue); font-weight: 700; }
-    .dialog-content { padding-top: 1rem; color: var(--text-primary); }
-    .case-section { margin-bottom: 1.5rem; }
-    .case-section h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary); }
-    .case-section p { color: var(--text-secondary); line-height: 1.6; }
-  `]
+    .dialog-head { padding-top: 1.5rem; }
+    .dialog-head h2 { margin: 0.25rem 0 0; font-size: 1.8rem; font-weight: 700; color: var(--text-primary); }
+    .eyebrow { font: 500 0.75rem var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-blue); }
+    .dialog-content { color: var(--text-primary); }
+    .case-section { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .case-icon {
+      flex: 0 0 40px; height: 40px; display: grid; place-items: center; border-radius: 12px;
+      background: var(--brand-soft); color: var(--brand-blue);
+    }
+    .case-section h3 { font-size: 1.05rem; margin: 0 0 0.35rem; color: var(--text-primary); }
+    .case-section p { margin: 0; color: var(--text-secondary); line-height: 1.65; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    mat-dialog-actions { padding: 0.75rem 1.5rem 1.5rem; }
+  `],
 })
 export class ProjectDialogComponent {
-  readonly data = inject(MAT_DIALOG_DATA);
+  readonly data = inject<Project>(MAT_DIALOG_DATA);
+  readonly sections = [
+    { key: 'challenge', title: 'The Challenge', icon: 'flag' },
+    { key: 'solution', title: 'The Solution & Architecture', icon: 'architecture' },
+    { key: 'outcome', title: 'The Outcome', icon: 'emoji_events' },
+  ] as const;
 }

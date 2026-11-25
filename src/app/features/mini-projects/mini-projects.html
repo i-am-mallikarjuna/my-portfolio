@@ -1,18 +1,30 @@
-<div class="lab-container">
-    <h2 class="section-title">The Lab</h2>
-    <p class="lab-subtitle">A collection of experimental projects, curiosities, and creative coding snippets.</p>
+<section class="lab">
+  <header class="section-header" appReveal>
+    <span class="eyebrow">Playground</span>
+    <h2>The <span class="gradient-text">Lab</span></h2>
+    <p>A collection of experimental projects, curiosities, and creative coding snippets.</p>
+  </header>
 
-    <div class="lab-grid">
-        <mat-card class="lab-card" *ngFor="let project of projects">
-            <mat-card-header>
-                <mat-card-title>{{ project.title }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>{{ project.description }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <a mat-button color="primary" [href]="project.path" target="_blank">Launch Experiment</a>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-</div>
+  <label class="search glass-card" appReveal>
+    <mat-icon>search</mat-icon>
+    <input
+      type="search"
+      placeholder="Search {{ projects.length }} experiments…"
+      [value]="query()"
+      (input)="query.set($any($event.target).value)"
+      aria-label="Search experiments" />
+  </label>
+
+  <div class="lab-grid">
+    @for (project of filteredProjects(); track project.path; let i = $index) {
+      <a class="lab-card glass-card" [href]="project.path" target="_blank" rel="noopener" appReveal [revealDelay]="(i % 6) * 60">
+        <span class="emoji" aria-hidden="true">{{ project.emoji }}</span>
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+        <span class="launch">Launch experiment <mat-icon>arrow_outward</mat-icon></span>
+      </a>
+    } @empty {
+      <p class="empty">No experiments match “{{ query() }}”.</p>
+    }
+  </div>
+</section>
