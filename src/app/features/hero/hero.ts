@@ -15,7 +15,7 @@ export class Hero implements OnInit, OnDestroy {
   readonly profile = PROFILE;
   readonly experienceYears = calculateExperienceYears();
 
-  readonly focusAreas = ['scalable APIs', 'enterprise apps', 'clean SQL', 'modern UIs'];
+  readonly focusAreas = ['scalable APIs', 'enterprise apps', 'clean SQL', 'modern UIs', 'AI-powered workflows'];
   readonly focusIndex = signal(0);
 
   readonly stats = [
