@@ -33,7 +33,7 @@ export class App implements OnInit {
   async checkForUpdates() {
     try {
       // Fetch version with a timestamp to bypass browser cache
-      const response = await fetch(`/version.json?t=${Date.now()}`);
+      const response = await fetch(`version.json?t=${Date.now()}`);
       const data = await response.json();
       const currentVersion = data.version;
       const storedVersion = localStorage.getItem('app_version');
