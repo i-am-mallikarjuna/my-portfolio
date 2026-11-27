@@ -24,7 +24,7 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    title: 'Bedrock',
+    title: 'Enterprise Lending & Dealer Platform',
     role: '.NET Developer',
     company: 'FS Technosol LLP',
     description: 'Maintain and extend an enterprise financial-services platform: WPF desktop screens, a CRM dealer module, a layer of about 60 WCF and REST services on IIS, and the T-SQL behind them. Also help run an AI-assisted development, code-review and QA workflow.',
@@ -36,7 +36,19 @@ export const PROJECTS: Project[] = [
     },
   },
   {
-    title: 'Vasa Web Ecosystem',
+    title: 'Self-Service Auto Loan Borrower Portal',
+    role: '.NET Full Stack Developer',
+    company: 'FS Technosol LLP',
+    description: 'A self-service web portal where auto-loan borrowers who applied through a dealer finish their loan online: secure sign-in, offer review, identity and vehicle verification, document upload, e-signing and AutoPay enrollment, without paperwork or phone calls.',
+    techStack: ['Angular', 'NgRx', 'Angular Material', 'Tailwind CSS', 'TypeScript', 'C#', 'REST / JSON', 'IIS', 'MSSQL', 'Veriff'],
+    caseStudy: {
+      challenge: 'Borrowers who applied through a dealer had to finish their loan with paperwork at the dealership or calls with staff, which slowed funding and created manual work for the operations team.',
+      solution: 'Built a single-page Angular app styled with Tailwind and Angular Material, with NgRx managing state across a multi-step borrower journey: email verification and one-time-passcode sign-in, offer review and optional products, identity verification via the Veriff SDK, vehicle, employment and military-status checks, document upload, contract signing and AutoPay/paperless enrollment. The code is organised into core (services, guards, store), feature-per-step and shared modules. All data flows through a versioned REST API into the loan-origination database, so staff see each completed step immediately in the internal servicing platform. Deployed as an Angular build served from IIS.',
+      outcome: 'Moved loan completion from the dealership and phone to a secure, guided online flow, reducing manual follow-up for staff and giving borrowers a faster, paperless path to funding.',
+    },
+  },
+  {
+    title: 'Multi-Site Enterprise Web Platform',
     role: '.NET Developer',
     company: 'FS Technosol LLP',
     description: 'Developed and supported a suite of 5 interconnected enterprise websites. Managed complex data integration, API handling, and optimized MSSQL stored procedures for efficient CRUD operations and high scalability.',
